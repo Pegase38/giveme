@@ -1,0 +1,54 @@
+{
+  "name": "annonce",
+  "plural": "annonces",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "photos": {
+      "type": [
+        "string"
+      ]
+    },
+    "category": {
+      "type": "AnnonceCategory"
+    },
+    "state": {
+      "type": "AnnonceType",
+      "required": true
+    },
+    "type": {
+      "type": "AnnonceType",
+      "required": true
+    },
+    "adress": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "owner": {
+      "type": "hasOne",
+      "model": "user",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
