@@ -1,0 +1,26 @@
+<header><app-header #head></app-header></header>
+
+<main [ngClass]="{ 'close-aside': head.close }">
+  <mat-sidenav-container
+    class="sidenav-container"
+    (backdropClick)="head.toggle()"
+  >
+    <mat-sidenav
+      [opened]="!head.close"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+      ><aside>
+        <div class="scroller"><app-nav></app-nav></div>
+      </aside>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="page">
+        <div class="contents"><router-outlet></router-outlet></div>
+
+        <footer><app-footer></app-footer></footer>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</main>

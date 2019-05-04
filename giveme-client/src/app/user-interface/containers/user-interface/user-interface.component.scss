@@ -1,0 +1,57 @@
+@import "~src/variables";
+
+/// Description design of user interface
+main {
+  background: $main-bg;
+  min-height: $main-min-height;
+}
+
+aside {
+  background: $sidenav-bg;
+  width: $sidenav-width;
+  min-height: $sidenav-min-height;
+  position: fixed;
+  z-index: 1000;
+  .scroller {
+    overflow-y: auto;
+    max-height: $scroller-max-height;
+    padding-bottom: $scroller-pdb;
+  }
+}
+
+.close-aside aside {
+  width: 0;
+  overflow: hidden;
+}
+
+.sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: $main-min-height;
+}
+
+.contents {
+  flex-grow: 1;
+}
+
+footer {
+  background: $footer-bg;
+}
+
+@media (min-width: $md-breakpoint) {
+  .contents, footer {
+    margin-left: $sidenav-width;
+  }
+
+  .close-aside .contents,
+  .close-aside footer {
+    margin-left: 0;
+  }
+
+}
