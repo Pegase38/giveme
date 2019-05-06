@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserInterfaceModule } from './user-interface/user-interface.module';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { UserInterfaceModule } from './user-interface/user-interface.module';
     UserInterfaceModule,
     LoginModule
   ],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue: '/app/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
