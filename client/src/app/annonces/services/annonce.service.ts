@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Collection } from '../fake-collection';
+import { HttpClient } from '@angular/common/http';
 import { Annonce } from 'src/app/shared/models/annonce';
+import { Observable } from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnnonceService {
-  private collection: Annonce[] = Collection;
-  constructor() {}
+  private apiBaseURL = 'http://localhost:3000/';
+  private basePath = 'annonces';
+  constructor(private http:HttpClient) {}
 
-  getAnnonces() {
-    return this.collection;
+  getAnnonces():Observable<Annonce[]> {
+    return this.http.get<Annonce[]>(this.apiBaseURL+this.basePath).pipe(tap(data => console.log(data)));
   }
 
   add(annonce: Annonce) {
     if (annonce) {
-      this.collection.push(new Annonce(annonce));
+      return this.http.post(this.apiBaseURL+this.basePath, annonce);
     }
   }
 

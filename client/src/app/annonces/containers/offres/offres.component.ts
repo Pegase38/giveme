@@ -1,5 +1,8 @@
-import { AnnonceService } from './../../services/annonce.service';
+
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { AnnonceService } from './../../services/annonce.service';
 import { Annonce } from 'src/app/shared/models/annonce';
 
 @Component({
@@ -8,9 +11,9 @@ import { Annonce } from 'src/app/shared/models/annonce';
   styleUrls: ['./offres.component.scss']
 })
 export class OffresComponent implements OnInit {
-  offres: Annonce[] = [];
+  offres$: Observable<Annonce[]>;
   constructor(private annonceService: AnnonceService) {
-    this.offres = annonceService.getAnnonces();
+    this.offres$ = this.annonceService.getAnnonces();
   }
 
   ngOnInit() {}

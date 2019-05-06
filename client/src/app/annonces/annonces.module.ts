@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OffresComponent } from './containers/offres/offres.component';
+
 import { AnnoncesRoutingModule } from './annonces-routing.module';
+import { OffresComponent } from './containers/offres/offres.component';
 import { OffreComponent } from './components/offre/offre.component';
 
 @NgModule({

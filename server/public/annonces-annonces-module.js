@@ -61,8 +61,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnoncesModule", function() { return AnnoncesModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./containers/offres/offres.component */ "./src/app/annonces/containers/offres/offres.component.ts");
-/* harmony import */ var _annonces_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annonces-routing.module */ "./src/app/annonces/annonces-routing.module.ts");
+/* harmony import */ var _annonces_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annonces-routing.module */ "./src/app/annonces/annonces-routing.module.ts");
+/* harmony import */ var _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/offres/offres.component */ "./src/app/annonces/containers/offres/offres.component.ts");
 /* harmony import */ var _components_offre_offre_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/offre/offre.component */ "./src/app/annonces/components/offre/offre.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -80,12 +80,12 @@ var AnnoncesModule = /** @class */ (function () {
     }
     AnnoncesModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            declarations: [_containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_2__["OffresComponent"], _components_offre_offre_component__WEBPACK_IMPORTED_MODULE_4__["OffreComponent"]],
+            declarations: [_containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__["OffresComponent"], _components_offre_offre_component__WEBPACK_IMPORTED_MODULE_4__["OffreComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _annonces_routing_module__WEBPACK_IMPORTED_MODULE_3__["AnnoncesRoutingModule"]
+                _annonces_routing_module__WEBPACK_IMPORTED_MODULE_2__["AnnoncesRoutingModule"]
             ],
-            exports: [_containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_2__["OffresComponent"]]
+            exports: [_containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__["OffresComponent"]]
         })
     ], AnnoncesModule);
     return AnnoncesModule;
@@ -170,7 +170,7 @@ var OffreComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngFor=\"let offre of offres\"><app-offre [offre]=\"offre\"></app-offre></ng-container>\n\n"
+module.exports = "<ng-container *ngFor=\"let offre of offres$ | async\"><app-offre [offre]=\"offre\"></app-offre></ng-container>\n\n"
 
 /***/ }),
 
@@ -195,8 +195,8 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OffresComponent", function() { return OffresComponent; });
-/* harmony import */ var _services_annonce_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../services/annonce.service */ "./src/app/annonces/services/annonce.service.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_annonce_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../services/annonce.service */ "./src/app/annonces/services/annonce.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -211,95 +211,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var OffresComponent = /** @class */ (function () {
     function OffresComponent(annonceService) {
         this.annonceService = annonceService;
-        this.offres = [];
-        this.offres = annonceService.getAnnonces();
+        this.offres$ = this.annonceService.getAnnonces();
     }
     OffresComponent.prototype.ngOnInit = function () { };
     OffresComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-offres',
             template: __webpack_require__(/*! ./offres.component.html */ "./src/app/annonces/containers/offres/offres.component.html"),
             styles: [__webpack_require__(/*! ./offres.component.scss */ "./src/app/annonces/containers/offres/offres.component.scss")]
         }),
-        __metadata("design:paramtypes", [_services_annonce_service__WEBPACK_IMPORTED_MODULE_0__["AnnonceService"]])
+        __metadata("design:paramtypes", [_services_annonce_service__WEBPACK_IMPORTED_MODULE_1__["AnnonceService"]])
     ], OffresComponent);
     return OffresComponent;
 }());
 
-
-
-/***/ }),
-
-/***/ "./src/app/annonces/fake-collection.ts":
-/*!*********************************************!*\
-  !*** ./src/app/annonces/fake-collection.ts ***!
-  \*********************************************/
-/*! exports provided: Collection */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Collection", function() { return Collection; });
-/* harmony import */ var _shared_models_annonce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/models/annonce */ "./src/app/shared/models/annonce.ts");
-/* harmony import */ var _shared_enum_annonce_category_enum__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/enum/annonce-category.enum */ "./src/app/shared/enum/annonce-category.enum.ts");
-/* harmony import */ var _shared_enum_annonce_state_enum__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/enum/annonce-state.enum */ "./src/app/shared/enum/annonce-state.enum.ts");
-/* harmony import */ var _shared_enum_annonce_type_enum__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/enum/annonce-type.enum */ "./src/app/shared/enum/annonce-type.enum.ts");
-
-
-
-
-var Collection = [
-    new _shared_models_annonce__WEBPACK_IMPORTED_MODULE_0__["Annonce"]({
-        id: 1,
-        title: 'Collection de livre sur l\'Ardèche',
-        category: _shared_enum_annonce_category_enum__WEBPACK_IMPORTED_MODULE_1__["AnnonceCategory"].BOOK,
-        state: _shared_enum_annonce_state_enum__WEBPACK_IMPORTED_MODULE_2__["AnnonceState"].OPEN,
-        type: _shared_enum_annonce_type_enum__WEBPACK_IMPORTED_MODULE_3__["AnnonceType"].OFFRE,
-        adress: '2 cours de lardeche',
-        city: 'Aubenas',
-        owner: 'unardechois',
-    }),
-    new _shared_models_annonce__WEBPACK_IMPORTED_MODULE_0__["Annonce"]({
-        id: 2,
-        title: 'Autre objet',
-        category: _shared_enum_annonce_category_enum__WEBPACK_IMPORTED_MODULE_1__["AnnonceCategory"].OTHER,
-        state: _shared_enum_annonce_state_enum__WEBPACK_IMPORTED_MODULE_2__["AnnonceState"].OPEN,
-        type: _shared_enum_annonce_type_enum__WEBPACK_IMPORTED_MODULE_3__["AnnonceType"].OFFRE,
-        adress: '2 cours de lardeche',
-        city: 'Aubenas',
-        owner: 'unardechois',
-    }),
-    new _shared_models_annonce__WEBPACK_IMPORTED_MODULE_0__["Annonce"]({
-        id: 3,
-        title: 'Une demande de libre super bien',
-        category: _shared_enum_annonce_category_enum__WEBPACK_IMPORTED_MODULE_1__["AnnonceCategory"].BOOK,
-        state: _shared_enum_annonce_state_enum__WEBPACK_IMPORTED_MODULE_2__["AnnonceState"].OPEN,
-        type: _shared_enum_annonce_type_enum__WEBPACK_IMPORTED_MODULE_3__["AnnonceType"].DEMANDE,
-        adress: '2 cours de lardeche',
-        city: 'Aubenas',
-        owner: 'unardechois',
-    }),
-    new _shared_models_annonce__WEBPACK_IMPORTED_MODULE_0__["Annonce"]({
-        id: 4,
-        title: 'Une offre de livre finie !',
-        category: _shared_enum_annonce_category_enum__WEBPACK_IMPORTED_MODULE_1__["AnnonceCategory"].BOOK,
-        state: _shared_enum_annonce_state_enum__WEBPACK_IMPORTED_MODULE_2__["AnnonceState"].CLOSE,
-        type: _shared_enum_annonce_type_enum__WEBPACK_IMPORTED_MODULE_3__["AnnonceType"].OFFRE,
-        adress: '2 cours de lardeche',
-        city: 'Aubenas',
-        owner: 'unardechois',
-    }),
-    new _shared_models_annonce__WEBPACK_IMPORTED_MODULE_0__["Annonce"]({
-        id: 5,
-        title: 'Une offre de livre finie2 !',
-        category: _shared_enum_annonce_category_enum__WEBPACK_IMPORTED_MODULE_1__["AnnonceCategory"].BOOK,
-        state: _shared_enum_annonce_state_enum__WEBPACK_IMPORTED_MODULE_2__["AnnonceState"].CLOSE,
-        type: _shared_enum_annonce_type_enum__WEBPACK_IMPORTED_MODULE_3__["AnnonceType"].OFFRE,
-        adress: '2 cours de lardeche',
-        city: 'Aubenas',
-        owner: 'unardechois',
-    }),
-];
 
 
 /***/ }),
@@ -315,8 +240,8 @@ var Collection = [
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnonceService", function() { return AnnonceService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _fake_collection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fake-collection */ "./src/app/annonces/fake-collection.ts");
-/* harmony import */ var src_app_shared_models_annonce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/models/annonce */ "./src/app/shared/models/annonce.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -330,15 +255,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var AnnonceService = /** @class */ (function () {
-    function AnnonceService() {
-        this.collection = _fake_collection__WEBPACK_IMPORTED_MODULE_1__["Collection"];
+    function AnnonceService(http) {
+        this.http = http;
+        this.apiBaseURL = 'http://localhost:3000/';
+        this.basePath = 'annonces';
     }
     AnnonceService.prototype.getAnnonces = function () {
-        return this.collection;
+        return this.http.get(this.apiBaseURL + this.basePath).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (data) { return console.log(data); }));
     };
     AnnonceService.prototype.add = function (annonce) {
         if (annonce) {
-            this.collection.push(new src_app_shared_models_annonce__WEBPACK_IMPORTED_MODULE_2__["Annonce"](annonce));
+            return this.http.post(this.apiBaseURL + this.basePath, annonce);
         }
     };
     AnnonceService.prototype.edit = function (annonce) {
@@ -349,7 +276,7 @@ var AnnonceService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], AnnonceService);
     return AnnonceService;
 }());

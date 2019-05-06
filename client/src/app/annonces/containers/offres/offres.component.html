@@ -1,2 +1,2 @@
-<ng-container *ngFor="let offre of offres"><app-offre [offre]="offre"></app-offre></ng-container>
+<ng-container *ngFor="let offre of offres$ | async"><app-offre [offre]="offre"></app-offre></ng-container>
 
