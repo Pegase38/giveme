@@ -63,7 +63,7 @@ export class JWTAuthenticationService {
       throw new HttpErrors.Unauthorized('The credentials are not correct.');
     }
 
-    const currentUser = _.pick(toJSON(foundUser), ['id', 'email', 'firstName']);
+    const currentUser = _.pick(toJSON(foundUser), ['id', 'email', 'username']);
     // Generate user token using JWT
     const token = await signAsync(currentUser, this.jwt_secret, {
       expiresIn: 300,
@@ -80,9 +80,9 @@ export class JWTAuthenticationService {
    */
   async decodeAccessToken(token: string): Promise<UserProfile> {
     const decoded = await verifyAsync(token, this.jwt_secret);
-    let user = _.pick(decoded, ['id', 'email', 'firstName']);
-    (user as UserProfile).name = user.firstName;
-    delete user.firstName;
+    let user = _.pick(decoded, ['id', 'email', 'username']);
+    (user as UserProfile).name = user.username;
+    delete user.username;
     return user;
   }
 }

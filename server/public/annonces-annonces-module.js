@@ -241,7 +241,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnonceService", function() { return AnnonceService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -253,7 +252,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
 var AnnonceService = /** @class */ (function () {
     function AnnonceService(http) {
         this.http = http;
@@ -261,20 +259,17 @@ var AnnonceService = /** @class */ (function () {
         this.basePath = 'annonces';
     }
     AnnonceService.prototype.getAnnonces = function () {
-        return this.http.get(this.apiBaseURL + this.basePath).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (data) { return console.log(data); }));
+        return this.http.get(this.apiBaseURL + this.basePath);
     };
     AnnonceService.prototype.add = function (annonce) {
         if (annonce) {
             return this.http.post(this.apiBaseURL + this.basePath, annonce);
         }
     };
-    AnnonceService.prototype.edit = function (annonce) {
-        console.log('edit prestation');
-        console.log(annonce);
-    };
+    AnnonceService.prototype.edit = function (annonce) { };
     AnnonceService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
+            providedIn: 'root',
         }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], AnnonceService);

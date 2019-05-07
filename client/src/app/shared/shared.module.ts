@@ -7,14 +7,16 @@ import {
   MatListModule,
   MatIconModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,
@@ -23,9 +25,11 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   exports: [
+    CommonModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,
@@ -34,7 +38,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
-  ]
+    MatListModule,
+  ],
 })
 export class SharedModule {}

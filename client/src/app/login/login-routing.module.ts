@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './containers/login/login.component';
 
-const routes: Routes = [{
-  path: '', redirectTo: 'login', pathMatch: 'full'
-}, {
-  path: 'login',
-  component: LoginComponent
-}];
+import { LoginComponent } from './containers/login/login.component';
+import { IsUserUnknownGuard } from '../core/auth/guards/is-user-unknown.guard';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    canActivate: [IsUserUnknownGuard],
+    component: LoginComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class LoginRoutingModule { }
+export class LoginRoutingModule {}
