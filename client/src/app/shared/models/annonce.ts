@@ -6,6 +6,7 @@ import { AnnonceType } from '../enum/annonce-type.enum';
 export class Annonce implements AnnonceInterface {
   id: number;
   title: string;
+  description: string;
   photos: string[];
   category: AnnonceCategory = AnnonceCategory.OTHER;
   state: AnnonceState = AnnonceState.OPEN;

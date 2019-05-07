@@ -25,12 +25,12 @@ import { LoggerInterceptor } from './core/logger/interceptors/logger.interceptor
     { provide: APP_BASE_HREF, useValue: '/app/' },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: LoggerInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      useClass: LoggerInterceptor,
       multi: true,
     },
   ],

@@ -194,12 +194,12 @@ var AppModule = /** @class */ (function () {
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_4__["APP_BASE_HREF"], useValue: '/app/' },
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"],
-                    useClass: _core_logger_interceptors_logger_interceptor__WEBPACK_IMPORTED_MODULE_10__["LoggerInterceptor"],
+                    useClass: _core_auth_interceptors_auth_interceptor__WEBPACK_IMPORTED_MODULE_9__["AuthInterceptor"],
                     multi: true,
                 },
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"],
-                    useClass: _core_auth_interceptors_auth_interceptor__WEBPACK_IMPORTED_MODULE_9__["AuthInterceptor"],
+                    useClass: _core_logger_interceptors_logger_interceptor__WEBPACK_IMPORTED_MODULE_10__["LoggerInterceptor"],
                     multi: true,
                 },
             ],
@@ -340,8 +340,12 @@ var IsUserUnknownGuard = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthInterceptor", function() { return AuthInterceptor; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/core/auth/services/auth.service.ts");
-/* harmony import */ var _logger_services_logger_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../logger/services/logger.service */ "./src/app/core/logger/services/logger.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/core/auth/services/auth.service.ts");
+/* harmony import */ var _logger_services_logger_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../logger/services/logger.service */ "./src/app/core/logger/services/logger.service.ts");
+/* harmony import */ var _services_session_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/session.service */ "./src/app/core/auth/services/session.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _config_config_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config/config.service */ "./src/app/core/config/config.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -354,22 +358,39 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
 var AuthInterceptor = /** @class */ (function () {
-    function AuthInterceptor(auth, logger) {
+    function AuthInterceptor(auth, session, logger, router, config) {
         this.auth = auth;
+        this.session = session;
         this.logger = logger;
+        this.router = router;
+        this.config = config;
     }
     AuthInterceptor.prototype.intercept = function (req, next) {
+        var _this = this;
         var authToken = this.auth.getAuthorizationToken();
         this.logger.info('authToken:' + authToken);
         var authReq = req.clone({
             headers: req.headers.set('Authorization', authToken),
         });
-        return next.handle(authReq);
+        return next.handle(authReq).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function () { }, 
+        // Operation failed; error is an HttpErrorResponse
+        function (error) {
+            _this.session.markTokenExpired();
+            _this.router.navigate(_this.config.getLoginRoute());
+        }));
     };
     AuthInterceptor = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _logger_services_logger_service__WEBPACK_IMPORTED_MODULE_2__["LoggerService"]])
+        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"],
+            _services_session_service__WEBPACK_IMPORTED_MODULE_4__["SessionService"],
+            _logger_services_logger_service__WEBPACK_IMPORTED_MODULE_3__["LoggerService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _config_config_service__WEBPACK_IMPORTED_MODULE_6__["ConfigService"]])
     ], AuthInterceptor);
     return AuthInterceptor;
 }());
@@ -838,7 +859,7 @@ var LoginComponent = /** @class */ (function () {
             .signIn(new src_app_shared_models_auth_credential__WEBPACK_IMPORTED_MODULE_7__["Credential"](this.loginForm.value))
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$))
             .subscribe(function () {
-            _this.logger.info('Login sucess!');
+            _this.logger.info('Login success!');
             _this.router.navigate(_this.config.getPostLoginDefaultRoute());
         }, function (err) {
             /*this.messageService.add({ severity: 'error', summary: 'Login error' }*/
@@ -1051,14 +1072,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
+/* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1072,29 +1095,33 @@ var SharedModule = /** @class */ (function () {
             declarations: [],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCheckboxModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"],
-                _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["LayoutModule"],
+                _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_4__["LayoutModule"],
+                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_3__["FlexLayoutModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSidenavModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"],
             ],
             exports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCheckboxModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"],
-                _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["LayoutModule"],
+                _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_4__["LayoutModule"],
+                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_3__["FlexLayoutModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSidenavModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"],
             ],
         })
     ], SharedModule);

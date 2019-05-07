@@ -1,14 +1,15 @@
 {
   "ids": {
-    "Annonce": 5,
+    "Annonce": 6,
     "User": 2
   },
   "models": {
     "Annonce": {
-      "1": "{\"id\": 1,\"title\": \"Collection de livre sur l'Ardèche\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}",
-      "2": "{\"id\": 2,\"title\": \"Collection de livre sur l'Ardèche2\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}",
-      "3": "{\"id\": 3,\"title\": \"Collection de livre sur l'Ardèche3\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}",
-      "4": "{\"id\": 4,\"title\": \"Collection de livre sur l'Ardèche4\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}"
+      "1": "{\"id\": 1,\"title\": \"Collection de livre sur l'Ardèche\",\"description\":\"genial livre\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}",
+      "2": "{\"id\": 2,\"title\": \"Collection de livre sur l'Ardèche2\",\"description\":\"genial livre2\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}",
+      "3": "{\"id\": 3,\"title\": \"Collection de livre sur l'Ardèche3\",\"description\":\"genial livre3\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}",
+      "4": "{\"id\": 4,\"title\": \"Collection de livre sur l'Ardèche4\",\"description\":\"genial livre4\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}",
+      "5": "{\"id\": 5,\"title\": \"Collection de livre sur l'Ardèche5\",\"description\":\"genial livre5\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}"
     },
     "User": {
       "1": "{\"username\":\"pegase\",\"email\":\"nicolas.touzard@gmail.com\",\"password\":\"$2a$10$aTKGIsple1XWnW0F3YSV5u5/4YwjkSAYTb2kFnQuEtUyxrD163.lS\",\"id\":1}"

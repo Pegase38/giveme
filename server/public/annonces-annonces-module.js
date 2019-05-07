@@ -60,8 +60,8 @@ var AnnoncesRoutingModule = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnoncesModule", function() { return AnnoncesModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _annonces_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annonces-routing.module */ "./src/app/annonces/annonces-routing.module.ts");
+/* harmony import */ var _annonces_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./annonces-routing.module */ "./src/app/annonces/annonces-routing.module.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/offres/offres.component */ "./src/app/annonces/containers/offres/offres.component.ts");
 /* harmony import */ var _components_offre_offre_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/offre/offre.component */ "./src/app/annonces/components/offre/offre.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -81,11 +81,8 @@ var AnnoncesModule = /** @class */ (function () {
     AnnoncesModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [_containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__["OffresComponent"], _components_offre_offre_component__WEBPACK_IMPORTED_MODULE_4__["OffreComponent"]],
-            imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _annonces_routing_module__WEBPACK_IMPORTED_MODULE_2__["AnnoncesRoutingModule"]
-            ],
-            exports: [_containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__["OffresComponent"]]
+            imports: [_shared_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"], _annonces_routing_module__WEBPACK_IMPORTED_MODULE_1__["AnnoncesRoutingModule"]],
+            exports: [_containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__["OffresComponent"]],
         })
     ], AnnoncesModule);
     return AnnoncesModule;
@@ -102,7 +99,7 @@ var AnnoncesModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n    <p>id:{{offre.id}}</p>\n    <p>Titre:{{offre.title}}</p>\n    <p>categorie:{{offre.category}}</p>\n    <p>Ville:{{offre.city}}</p>\n    <p>Date:{{offre.creationDate | date}}</p>\n</div>\n"
+module.exports = "<mat-card class=\"gm-card\">\n  <mat-card-header>\n    <mat-card-title>{{ offre.title }}</mat-card-title>\n    <mat-card-subtitle>{{ offre.category }}</mat-card-subtitle>\n  </mat-card-header>\n  <img\n    mat-card-image\n    src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\n    [alt]=\"offre.title\"\n  />\n  <mat-card-content>\n    <p>{{ offre.city }}</p>\n    <p>{{ offre.creationDate }}</p>\n  </mat-card-content>\n  <mat-card-actions><button>En savoir plus</button></mat-card-actions>\n</mat-card>\n"
 
 /***/ }),
 
@@ -113,7 +110,7 @@ module.exports = "<div>\n    <p>id:{{offre.id}}</p>\n    <p>Titre:{{offre.title}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Fubm9uY2VzL2NvbXBvbmVudHMvb2ZmcmUvb2ZmcmUuY29tcG9uZW50LnNjc3MifQ== */"
+module.exports = ".gm-card {\n  max-width: 400px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYW5ub25jZXMvY29tcG9uZW50cy9vZmZyZS9DOlxcZGV2XFxnaXZlbWVcXGNsaWVudC9zcmNcXGFwcFxcYW5ub25jZXNcXGNvbXBvbmVudHNcXG9mZnJlXFxvZmZyZS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFnQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvYW5ub25jZXMvY29tcG9uZW50cy9vZmZyZS9vZmZyZS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5nbS1jYXJkIHtcclxuICBtYXgtd2lkdGg6IDQwMHB4O1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -170,7 +167,7 @@ var OffreComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngFor=\"let offre of offres$ | async\"><app-offre [offre]=\"offre\"></app-offre></ng-container>\n\n"
+module.exports = "<div\n  fxLayout=\"row\"\n  fxLayout.xs=\"column\"\n  fxLayoutWrap\n  fxLayoutGap=\"0.5%\"\n  fxLayoutAlign=\"center\"\n>\n  <ng-container *ngFor=\"let offre of offres$ | async\">\n    <app-offre [offre]=\"offre\"></app-offre>\n  </ng-container>\n</div>\n"
 
 /***/ }),
 

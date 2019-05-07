@@ -16,13 +16,15 @@ import {
   del,
   requestBody,
 } from '@loopback/rest';
+import {authenticate} from '@loopback/authentication';
+
 import {Annonce} from '../models';
 import {AnnonceRepository} from '../repositories';
 
 export class AnnonceController {
   constructor(
     @repository(AnnonceRepository)
-    public annonceRepository : AnnonceRepository,
+    public annonceRepository: AnnonceRepository,
   ) {}
 
   @post('/annonces', {
@@ -33,6 +35,7 @@ export class AnnonceController {
       },
     },
   })
+  @authenticate('jwt')
   async create(@requestBody() annonce: Annonce): Promise<Annonce> {
     return await this.annonceRepository.create(annonce);
   }
@@ -63,6 +66,7 @@ export class AnnonceController {
       },
     },
   })
+  @authenticate('jwt')
   async find(
     @param.query.object('filter', getFilterSchemaFor(Annonce)) filter?: Filter,
   ): Promise<Annonce[]> {

@@ -17,6 +17,12 @@ export class Annonce extends Entity {
   @property({
     type: 'string',
     required: true,
+  })
+  description: string;
+
+  @property({
+    type: 'string',
+    required: true,
     default: 'Other',
   })
   category: string;
@@ -49,7 +55,6 @@ export class Annonce extends Entity {
     type: 'date',
   })
   createdDate?: string;
-
 
   constructor(data?: Partial<Annonce>) {
     super(data);

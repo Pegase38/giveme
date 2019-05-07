@@ -8,7 +8,9 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatToolbarModule,
+  MatCardModule,
 } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -21,11 +23,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatMenuModule,
     LayoutModule,
+    FlexLayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatCardModule,
   ],
   exports: [
     CommonModule,
@@ -34,11 +38,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatMenuModule,
     LayoutModule,
+    FlexLayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatCardModule,
   ],
 })
 export class SharedModule {}

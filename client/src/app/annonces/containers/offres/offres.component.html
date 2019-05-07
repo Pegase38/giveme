@@ -1,2 +1,11 @@
-<ng-container *ngFor="let offre of offres$ | async"><app-offre [offre]="offre"></app-offre></ng-container>
-
+<div
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutWrap
+  fxLayoutGap="0.5%"
+  fxLayoutAlign="center"
+>
+  <ng-container *ngFor="let offre of offres$ | async">
+    <app-offre [offre]="offre"></app-offre>
+  </ng-container>
+</div>

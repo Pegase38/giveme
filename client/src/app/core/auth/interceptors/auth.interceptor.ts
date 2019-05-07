@@ -5,14 +5,24 @@ import {
   HttpHandler,
   HttpRequest,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, config } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 import { LoggerService } from '../../logger/services/logger.service';
+import { SessionService } from '../services/session.service';
+import { Router } from '@angular/router';
+import { ConfigService } from '../../config/config.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthService, private logger: LoggerService) {}
+  constructor(
+    private auth: AuthService,
+    private session: SessionService,
+    private logger: LoggerService,
+    private router: Router,
+    private config: ConfigService
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -24,6 +34,15 @@ export class AuthInterceptor implements HttpInterceptor {
       headers: req.headers.set('Authorization', authToken),
     });
 
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(
+      tap(
+        () => {},
+        // Operation failed; error is an HttpErrorResponse
+        error => {
+          this.session.markTokenExpired();
+          this.router.navigate(this.config.getLoginRoute());
+        }
+      )
+    );
   }
 }

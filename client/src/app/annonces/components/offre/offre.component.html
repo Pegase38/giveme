@@ -1,7 +1,16 @@
-<div>
-    <p>id:{{offre.id}}</p>
-    <p>Titre:{{offre.title}}</p>
-    <p>categorie:{{offre.category}}</p>
-    <p>Ville:{{offre.city}}</p>
-    <p>Date:{{offre.creationDate | date}}</p>
-</div>
+<mat-card class="gm-card">
+  <mat-card-header>
+    <mat-card-title>{{ offre.title }}</mat-card-title>
+    <mat-card-subtitle>{{ offre.category }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    [alt]="offre.title"
+  />
+  <mat-card-content>
+    <p>{{ offre.city }}</p>
+    <p>{{ offre.creationDate }}</p>
+  </mat-card-content>
+  <mat-card-actions><button>En savoir plus</button></mat-card-actions>
+</mat-card>

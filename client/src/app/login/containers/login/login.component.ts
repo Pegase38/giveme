@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         () => {
-          this.logger.info('Login sucess!');
+          this.logger.info('Login success!');
           this.router.navigate(this.config.getPostLoginDefaultRoute());
         },
         err =>
