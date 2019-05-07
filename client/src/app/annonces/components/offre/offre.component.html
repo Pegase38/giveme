@@ -1,16 +1,21 @@
-<mat-card class="gm-card">
-  <mat-card-header>
-    <mat-card-title>{{ offre.title }}</mat-card-title>
-    <mat-card-subtitle>{{ offre.category }}</mat-card-subtitle>
-  </mat-card-header>
-  <img
-    mat-card-image
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-    [alt]="offre.title"
-  />
-  <mat-card-content>
-    <p>{{ offre.city }}</p>
-    <p>{{ offre.creationDate }}</p>
-  </mat-card-content>
-  <mat-card-actions><button>En savoir plus</button></mat-card-actions>
-</mat-card>
+<div class="card">
+  <div class="card-header">
+    {{ offre.title }}
+  </div>
+  <div class="card-img">
+    <img
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      [alt]="offre.title"
+    />
+  </div>
+  <div class="card-block">
+    <div class="card-title">{{ offre.category }}</div>
+    <div class="card-text">
+      <p>{{ offre.city }}</p>
+      <p>{{ offre.creationDate }}</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button mat-button>En savoir plus</button>
+  </div>
+</div>

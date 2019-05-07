@@ -99,7 +99,7 @@ var AnnoncesModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card class=\"gm-card\">\n  <mat-card-header>\n    <mat-card-title>{{ offre.title }}</mat-card-title>\n    <mat-card-subtitle>{{ offre.category }}</mat-card-subtitle>\n  </mat-card-header>\n  <img\n    mat-card-image\n    src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\n    [alt]=\"offre.title\"\n  />\n  <mat-card-content>\n    <p>{{ offre.city }}</p>\n    <p>{{ offre.creationDate }}</p>\n  </mat-card-content>\n  <mat-card-actions><button>En savoir plus</button></mat-card-actions>\n</mat-card>\n"
+module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    {{ offre.title }}\n  </div>\n  <div class=\"card-img\">\n    <img\n      src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\n      [alt]=\"offre.title\"\n    />\n  </div>\n  <div class=\"card-block\">\n    <div class=\"card-title\">{{ offre.category }}</div>\n    <div class=\"card-text\">\n      <p>{{ offre.city }}</p>\n      <p>{{ offre.creationDate }}</p>\n    </div>\n  </div>\n  <div class=\"card-footer\">\n    <button mat-button>En savoir plus</button>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -110,7 +110,7 @@ module.exports = "<mat-card class=\"gm-card\">\n  <mat-card-header>\n    <mat-ca
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".gm-card {\n  max-width: 400px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYW5ub25jZXMvY29tcG9uZW50cy9vZmZyZS9DOlxcZGV2XFxnaXZlbWVcXGNsaWVudC9zcmNcXGFwcFxcYW5ub25jZXNcXGNvbXBvbmVudHNcXG9mZnJlXFxvZmZyZS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFnQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvYW5ub25jZXMvY29tcG9uZW50cy9vZmZyZS9vZmZyZS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5nbS1jYXJkIHtcclxuICBtYXgtd2lkdGg6IDQwMHB4O1xyXG59XHJcbiJdfQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Fubm9uY2VzL2NvbXBvbmVudHMvb2ZmcmUvb2ZmcmUuY29tcG9uZW50LnNjc3MifQ== */"
 
 /***/ }),
 
@@ -167,7 +167,7 @@ var OffreComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div\n  fxLayout=\"row\"\n  fxLayout.xs=\"column\"\n  fxLayoutWrap\n  fxLayoutGap=\"0.5%\"\n  fxLayoutAlign=\"center\"\n>\n  <ng-container *ngFor=\"let offre of offres$ | async\">\n    <app-offre [offre]=\"offre\"></app-offre>\n  </ng-container>\n</div>\n"
+module.exports = "<div class=\"clr-row\">\n  <ng-container *ngFor=\"let offre of offres$ | async\">\n    <div class=\"clr-col-sm-12 clr-col-lg-4\">\n      <app-offre [offre]=\"offre\"></app-offre>\n    </div>\n  </ng-container>\n</div>\n"
 
 /***/ }),
 

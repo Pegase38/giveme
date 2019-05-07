@@ -1,8 +1,32 @@
-<mat-toolbar color="primary">
-  <button mat-button (click)="toggle()"><mat-icon>menu</mat-icon></button>
-  <h1>{{title}}</h1>
-  <!--
-    <span class="example-spacer"></span>
-    <button mat-button [matMenuTriggerFor]="appMenu"><mat-icon>settings</mat-icon></button>
-  -->
-</mat-toolbar>
+<header class="header-3">
+  <div class="branding">
+    <a class="nav-link">
+      <clr-icon shape="shield"></clr-icon>
+      <span class="title">{{ title }}</span>
+    </a>
+  </div>
+  <div class="header-nav">
+    <a [routerLink]="['/']" routerLinkActive="active" class="nav-link nav-icon"
+      ><clr-icon shape="home"></clr-icon
+    ></a>
+  </div>
+  <div class="header-actions">
+    <clr-dropdown class="dropdown bottom-right">
+      <button class="nav-icon" clrDropdownToggle>
+        <clr-icon shape="user"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <div class="dropdown-menu">
+        <a
+          [routerLink]="['/user/settings']"
+          routerLinkActive="active"
+          clrDropdownItem
+          >Preferences</a
+        >
+        <a [routerLink]="['/logout']" routerLinkActive="active" clrDropdownItem
+          >Log out</a
+        >
+      </div>
+    </clr-dropdown>
+  </div>
+</header>

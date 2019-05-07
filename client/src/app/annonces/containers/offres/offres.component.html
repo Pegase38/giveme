@@ -1,11 +1,7 @@
-<div
-  fxLayout="row"
-  fxLayout.xs="column"
-  fxLayoutWrap
-  fxLayoutGap="0.5%"
-  fxLayoutAlign="center"
->
+<div class="clr-row">
   <ng-container *ngFor="let offre of offres$ | async">
-    <app-offre [offre]="offre"></app-offre>
+    <div class="clr-col-sm-12 clr-col-lg-4">
+      <app-offre [offre]="offre"></app-offre>
+    </div>
   </ng-container>
 </div>

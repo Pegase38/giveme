@@ -3,18 +3,12 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   title = 'GiveMe';
-  close = true;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
-  toggle() {
-    this.close = !this.close;
-  }
+  ngOnInit() {}
 }

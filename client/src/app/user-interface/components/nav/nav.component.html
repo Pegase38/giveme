@@ -1,4 +1,16 @@
-<mat-nav-list>
-    <a mat-list-item routerLink="." routerLinkActive="router-link-active">Déposer une annonce</a>
-  <a mat-list-item [routerLink]="['/annonces', 'offres']" routerLinkActive="router-link-active">Offres</a>
-</mat-nav-list>
+<nav class="sidenav">
+  <section class="sidenav-content">
+    <a
+      [routerLink]="['/annonces', 'offres']"
+      routerLinkActive="active"
+      class="nav-link"
+      >Offres</a
+    >
+    <a
+      [routerLink]="['/annonces', 'newAnnonce']"
+      routerLinkActive="active"
+      class="nav-link"
+      >Déposer une annonce</a
+    >
+  </section>
+</nav>

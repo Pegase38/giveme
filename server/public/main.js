@@ -377,9 +377,7 @@ var AuthInterceptor = /** @class */ (function () {
         var authReq = req.clone({
             headers: req.headers.set('Authorization', authToken),
         });
-        return next.handle(authReq).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function () { }, 
-        // Operation failed; error is an HttpErrorResponse
-        function (error) {
+        return next.handle(authReq).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function () { }, function () {
             _this.session.markTokenExpired();
             _this.router.navigate(_this.config.getLoginRoute());
         }));
@@ -1071,10 +1069,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SharedModule", function() { return SharedModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
-/* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _clr_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @clr/angular */ "./node_modules/@clr/angular/fesm5/clr-angular.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1085,44 +1081,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
-
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
     SharedModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [],
-            imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCheckboxModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"],
-                _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_4__["LayoutModule"],
-                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_3__["FlexLayoutModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSidenavModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"],
-            ],
-            exports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCheckboxModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"],
-                _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_4__["LayoutModule"],
-                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_3__["FlexLayoutModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSidenavModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"],
-            ],
+            imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _clr_angular__WEBPACK_IMPORTED_MODULE_3__["ClarityModule"]],
+            exports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _clr_angular__WEBPACK_IMPORTED_MODULE_3__["ClarityModule"]],
         })
     ], SharedModule);
     return SharedModule;
@@ -1202,7 +1168,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\">\n  <button mat-button (click)=\"toggle()\"><mat-icon>menu</mat-icon></button>\n  <h1>{{title}}</h1>\n  <!--\n    <span class=\"example-spacer\"></span>\n    <button mat-button [matMenuTriggerFor]=\"appMenu\"><mat-icon>settings</mat-icon></button>\n  -->\n</mat-toolbar>\n"
+module.exports = "<header class=\"header-3\">\n  <div class=\"branding\">\n    <a class=\"nav-link\">\n      <clr-icon shape=\"shield\"></clr-icon>\n      <span class=\"title\">{{ title }}</span>\n    </a>\n  </div>\n  <div class=\"header-nav\">\n    <a [routerLink]=\"['/']\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\n      ><clr-icon shape=\"home\"></clr-icon\n    ></a>\n  </div>\n  <div class=\"header-actions\">\n    <clr-dropdown class=\"dropdown bottom-right\">\n      <button class=\"nav-icon\" clrDropdownToggle>\n        <clr-icon shape=\"user\"></clr-icon>\n        <clr-icon shape=\"caret down\"></clr-icon>\n      </button>\n      <div class=\"dropdown-menu\">\n        <a\n          [routerLink]=\"['/user/settings']\"\n          routerLinkActive=\"active\"\n          clrDropdownItem\n          >Preferences</a\n        >\n        <a [routerLink]=\"['/logout']\" routerLinkActive=\"active\" clrDropdownItem\n          >Log out</a\n        >\n      </div>\n    </clr-dropdown>\n  </div>\n</header>\n"
 
 /***/ }),
 
@@ -1241,13 +1207,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var HeaderComponent = /** @class */ (function () {
     function HeaderComponent() {
         this.title = 'GiveMe';
-        this.close = true;
     }
-    HeaderComponent.prototype.ngOnInit = function () {
-    };
-    HeaderComponent.prototype.toggle = function () {
-        this.close = !this.close;
-    };
+    HeaderComponent.prototype.ngOnInit = function () { };
     HeaderComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-header',
@@ -1270,7 +1231,7 @@ var HeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-nav-list>\n    <a mat-list-item routerLink=\".\" routerLinkActive=\"router-link-active\">Déposer une annonce</a>\n  <a mat-list-item [routerLink]=\"['/annonces', 'offres']\" routerLinkActive=\"router-link-active\">Offres</a>\n</mat-nav-list>\n"
+module.exports = "<nav class=\"sidenav\">\n  <section class=\"sidenav-content\">\n    <a\n      [routerLink]=\"['/annonces', 'offres']\"\n      routerLinkActive=\"active\"\n      class=\"nav-link\"\n      >Offres</a\n    >\n    <a\n      [routerLink]=\"['/annonces', 'newAnnonce']\"\n      routerLinkActive=\"active\"\n      class=\"nav-link\"\n      >Déposer une annonce</a\n    >\n  </section>\n</nav>\n"
 
 /***/ }),
 
@@ -1281,7 +1242,7 @@ module.exports = "<mat-nav-list>\n    <a mat-list-item routerLink=\".\" routerLi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".sidenav-container {\n  height: 100%; }\n\n.sidenav {\n  width: 200px; }\n\n.sidenav .mat-toolbar {\n  background: inherit; }\n\n.mat-toolbar.mat-primary {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 1; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci1pbnRlcmZhY2UvY29tcG9uZW50cy9uYXYvQzpcXGRldlxcZ2l2ZW1lXFxjbGllbnQvc3JjXFxhcHBcXHVzZXItaW50ZXJmYWNlXFxjb21wb25lbnRzXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVksRUFBQTs7QUFHZDtFQUNFLFlBQVksRUFBQTs7QUFHZDtFQUNFLG1CQUFtQixFQUFBOztBQUdyQjtFQUNFLHdCQUFnQjtFQUFoQixnQkFBZ0I7RUFDaEIsTUFBTTtFQUNOLFVBQVUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3VzZXItaW50ZXJmYWNlL2NvbXBvbmVudHMvbmF2L25hdi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zaWRlbmF2LWNvbnRhaW5lciB7XG4gIGhlaWdodDogMTAwJTtcbn1cblxuLnNpZGVuYXYge1xuICB3aWR0aDogMjAwcHg7XG59XG5cbi5zaWRlbmF2IC5tYXQtdG9vbGJhciB7XG4gIGJhY2tncm91bmQ6IGluaGVyaXQ7XG59XG5cbi5tYXQtdG9vbGJhci5tYXQtcHJpbWFyeSB7XG4gIHBvc2l0aW9uOiBzdGlja3k7XG4gIHRvcDogMDtcbiAgei1pbmRleDogMTtcbn1cbiJdfQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3VzZXItaW50ZXJmYWNlL2NvbXBvbmVudHMvbmF2L25hdi5jb21wb25lbnQuc2NzcyJ9 */"
 
 /***/ }),
 
@@ -1331,7 +1292,7 @@ var NavComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header><app-header #head></app-header></header>\n\n<main [ngClass]=\"{ 'close-aside': head.close }\">\n  <mat-sidenav-container\n    class=\"sidenav-container\"\n    (backdropClick)=\"head.toggle()\"\n  >\n    <mat-sidenav\n      [opened]=\"!head.close\"\n      [mode]=\"mobileQuery.matches ? 'over' : 'side'\"\n      [fixedInViewport]=\"mobileQuery.matches\"\n      fixedTopGap=\"56\"\n      ><aside>\n        <div class=\"scroller\"><app-nav></app-nav></div>\n      </aside>\n    </mat-sidenav>\n\n    <mat-sidenav-content>\n      <div class=\"page\">\n        <div class=\"contents\"><router-outlet></router-outlet></div>\n\n        <footer><app-footer></app-footer></footer>\n      </div>\n    </mat-sidenav-content>\n  </mat-sidenav-container>\n</main>\n"
+module.exports = "<div class=\"main-container\">\n  <app-header></app-header>\n  <div class=\"content-container\">\n    <div class=\"content-area\">\n      <router-outlet></router-outlet>\n      <app-footer></app-footer>\n    </div>\n    <app-nav class=\"sidenav\"></app-nav>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1342,7 +1303,7 @@ module.exports = "<header><app-header #head></app-header></header>\n\n<main [ngC
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "main {\n  background: #f2f2f2;\n  min-height: calc(100vh - 65px); }\n\naside {\n  background: #e6e5e5;\n  width: 250px;\n  min-height: 100vh;\n  position: fixed;\n  z-index: 1000; }\n\naside .scroller {\n    overflow-y: auto;\n    max-height: 100vh;\n    padding-bottom: 65px; }\n\n.close-aside aside {\n  width: 0;\n  overflow: hidden; }\n\n.sidenav-container {\n  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This\r\n     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */\n  flex: 1; }\n\n.page {\n  display: flex;\n  flex-direction: column;\n  min-height: calc(100vh - 65px); }\n\n.contents {\n  flex-grow: 1; }\n\nfooter {\n  background: #ffffff; }\n\n@media (min-width: 769px) {\n  .contents, footer {\n    margin-left: 250px; }\n  .close-aside .contents,\n  .close-aside footer {\n    margin-left: 0; } }\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci1pbnRlcmZhY2UvY29udGFpbmVycy91c2VyLWludGVyZmFjZS9DOlxcZGV2XFxnaXZlbWVcXGNsaWVudC9zcmNcXGFwcFxcdXNlci1pbnRlcmZhY2VcXGNvbnRhaW5lcnNcXHVzZXItaW50ZXJmYWNlXFx1c2VyLWludGVyZmFjZS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdXNlci1pbnRlcmZhY2UvY29udGFpbmVycy91c2VyLWludGVyZmFjZS9DOlxcZGV2XFxnaXZlbWVcXGNsaWVudC9zcmNcXF92YXJpYWJsZXMuc2NzcyIsInNyYy9hcHAvdXNlci1pbnRlcmZhY2UvY29udGFpbmVycy91c2VyLWludGVyZmFjZS91c2VyLWludGVyZmFjZS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHQTtFQUNFLG1CQ3FCK0I7RURwQi9CLDhCQ21Ca0MsRUFBQTs7QURoQnBDO0VBQ0UsbUJDcUJtQztFRHBCbkMsWUNrQm1CO0VEakJuQixpQkNrQndCO0VEakJ4QixlQUFlO0VBQ2YsYUFBYSxFQUFBOztBQUxmO0lBT0ksZ0JBQWdCO0lBQ2hCLGlCQ2lCdUI7SURoQnZCLG9CQ0NnQixFQUFBOztBREdwQjtFQUNFLFFBQVE7RUFDUixnQkFBZ0IsRUFBQTs7QUFHbEI7RUFDRTswRkVOd0Y7RUZReEYsT0FBTyxFQUFBOztBQUdUO0VBQ0UsYUFBYTtFQUNiLHNCQUFzQjtFQUN0Qiw4QkNYa0MsRUFBQTs7QURjcEM7RUFDRSxZQUFZLEVBQUE7O0FBR2Q7RUFDRSxtQkNwQ21CLEVBQUE7O0FEdUNyQjtFQUNFO0lBQ0Usa0JDcEJpQixFQUFBO0VEdUJuQjs7SUFFRSxjQUFjLEVBQUEsRUFDZiIsImZpbGUiOiJzcmMvYXBwL3VzZXItaW50ZXJmYWNlL2NvbnRhaW5lcnMvdXNlci1pbnRlcmZhY2UvdXNlci1pbnRlcmZhY2UuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IFwifnNyYy92YXJpYWJsZXNcIjtcclxuXHJcbi8vLyBEZXNjcmlwdGlvbiBkZXNpZ24gb2YgdXNlciBpbnRlcmZhY2VcclxubWFpbiB7XHJcbiAgYmFja2dyb3VuZDogJG1haW4tYmc7XHJcbiAgbWluLWhlaWdodDogJG1haW4tbWluLWhlaWdodDtcclxufVxyXG5cclxuYXNpZGUge1xyXG4gIGJhY2tncm91bmQ6ICRzaWRlbmF2LWJnO1xyXG4gIHdpZHRoOiAkc2lkZW5hdi13aWR0aDtcclxuICBtaW4taGVpZ2h0OiAkc2lkZW5hdi1taW4taGVpZ2h0O1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICB6LWluZGV4OiAxMDAwO1xyXG4gIC5zY3JvbGxlciB7XHJcbiAgICBvdmVyZmxvdy15OiBhdXRvO1xyXG4gICAgbWF4LWhlaWdodDogJHNjcm9sbGVyLW1heC1oZWlnaHQ7XHJcbiAgICBwYWRkaW5nLWJvdHRvbTogJHNjcm9sbGVyLXBkYjtcclxuICB9XHJcbn1cclxuXHJcbi5jbG9zZS1hc2lkZSBhc2lkZSB7XHJcbiAgd2lkdGg6IDA7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG5cclxuLnNpZGVuYXYtY29udGFpbmVyIHtcclxuICAvKiBXaGVuIHRoZSBzaWRlbmF2IGlzIG5vdCBmaXhlZCwgc3RyZXRjaCB0aGUgc2lkZW5hdiBjb250YWluZXIgdG8gZmlsbCB0aGUgYXZhaWxhYmxlIHNwYWNlLiBUaGlzXHJcbiAgICAgY2F1c2VzIGA8bWF0LXNpZGVuYXYtY29udGVudD5gIHRvIGFjdCBhcyBvdXIgc2Nyb2xsaW5nIGVsZW1lbnQgZm9yIGRlc2t0b3AgbGF5b3V0cy4gKi9cclxuICBmbGV4OiAxO1xyXG59XHJcblxyXG4ucGFnZSB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIG1pbi1oZWlnaHQ6ICRtYWluLW1pbi1oZWlnaHQ7XHJcbn1cclxuXHJcbi5jb250ZW50cyB7XHJcbiAgZmxleC1ncm93OiAxO1xyXG59XHJcblxyXG5mb290ZXIge1xyXG4gIGJhY2tncm91bmQ6ICRmb290ZXItYmc7XHJcbn1cclxuXHJcbkBtZWRpYSAobWluLXdpZHRoOiAkbWQtYnJlYWtwb2ludCkge1xyXG4gIC5jb250ZW50cywgZm9vdGVyIHtcclxuICAgIG1hcmdpbi1sZWZ0OiAkc2lkZW5hdi13aWR0aDtcclxuICB9XHJcblxyXG4gIC5jbG9zZS1hc2lkZSAuY29udGVudHMsXHJcbiAgLmNsb3NlLWFzaWRlIGZvb3RlciB7XHJcbiAgICBtYXJnaW4tbGVmdDogMDtcclxuICB9XHJcblxyXG59XHJcbiIsIi8vIGJyZWFrcG9pbnRzXHJcbiRzbS1icmVha3BvaW50OiA1NzZweDtcclxuJG1kLWJyZWFrcG9pbnQ6IDc2OXB4O1xyXG4kbGctYnJlYWtwb2ludDogOTkycHg7XHJcbiR4bC1icmVha3BvaW50OiAxMjAwcHg7XHJcblxyXG4vLyBjb2xvcnNcclxuJGxpZ2h0LWNvbG9yOiAjZmZmZmZmO1xyXG4kZGFyay1jb2xvcjogIzEzMTMxMztcclxuJHBhbGV0dGUtY29sb3Itb25lOiAjMDBhMWU1O1xyXG4kcGFsZXR0ZS1jb2xvci10d286ICNlMjQ0NWM7XHJcbiRwYWxldHRlLWNvbG9yLXRocmVlOiAjZmRhYjNkO1xyXG4kcGFsZXR0ZS1jb2xvci1mb3VyOiAjMDBjODc1O1xyXG5cclxuLy8gZ3V0dGVyc1xyXG4kZ3V0dGVyOiAxNXB4O1xyXG5cclxuLy8gaGVhZGVyXHJcbiRoZWFkZXItaGVpZ2h0OiA2NXB4O1xyXG4kaGVhZGVyLWJnOiAkbGlnaHQtY29sb3I7XHJcbiRoZWFkZXItcGFkZGluZzogMCAkZ3V0dGVyO1xyXG5cclxuLy8gbWFpblxyXG4kbWFpbi1wZHQ6IDY1cHg7XHJcbiRtYWluLW1pbi1oZWlnaHQ6IGNhbGMoMTAwdmggLSA2NXB4KTtcclxuJG1haW4tYmc6IGRhcmtlbigkbGlnaHQtY29sb3IsIDUpO1xyXG5cclxuLy8gc2lkZW5hdlxyXG4kc2lkZW5hdi13aWR0aDogMjUwcHg7XHJcbiRzaWRlbmF2LW1pbi1oZWlnaHQ6IDEwMHZoO1xyXG4kc2lkZW5hdi1iZzogZGFya2VuKCRsaWdodC1jb2xvciwgMTApO1xyXG5cclxuLy8gc2Nyb2xsZXJcclxuJHNjcm9sbGVyLW1heC1oZWlnaHQ6IDEwMHZoO1xyXG4kc2Nyb2xsZXItcGRiOiAkaGVhZGVyLWhlaWdodDtcclxuXHJcbi8vIGZvb3RlclxyXG4kZm9vdGVyLWJnOiAkbGlnaHQtY29sb3I7XHJcbiIsIm1haW4ge1xuICBiYWNrZ3JvdW5kOiAjZjJmMmYyO1xuICBtaW4taGVpZ2h0OiBjYWxjKDEwMHZoIC0gNjVweCk7IH1cblxuYXNpZGUge1xuICBiYWNrZ3JvdW5kOiAjZTZlNWU1O1xuICB3aWR0aDogMjUwcHg7XG4gIG1pbi1oZWlnaHQ6IDEwMHZoO1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHotaW5kZXg6IDEwMDA7IH1cbiAgYXNpZGUgLnNjcm9sbGVyIHtcbiAgICBvdmVyZmxvdy15OiBhdXRvO1xuICAgIG1heC1oZWlnaHQ6IDEwMHZoO1xuICAgIHBhZGRpbmctYm90dG9tOiA2NXB4OyB9XG5cbi5jbG9zZS1hc2lkZSBhc2lkZSB7XG4gIHdpZHRoOiAwO1xuICBvdmVyZmxvdzogaGlkZGVuOyB9XG5cbi5zaWRlbmF2LWNvbnRhaW5lciB7XG4gIC8qIFdoZW4gdGhlIHNpZGVuYXYgaXMgbm90IGZpeGVkLCBzdHJldGNoIHRoZSBzaWRlbmF2IGNvbnRhaW5lciB0byBmaWxsIHRoZSBhdmFpbGFibGUgc3BhY2UuIFRoaXNcclxuICAgICBjYXVzZXMgYDxtYXQtc2lkZW5hdi1jb250ZW50PmAgdG8gYWN0IGFzIG91ciBzY3JvbGxpbmcgZWxlbWVudCBmb3IgZGVza3RvcCBsYXlvdXRzLiAqL1xuICBmbGV4OiAxOyB9XG5cbi5wYWdlIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgbWluLWhlaWdodDogY2FsYygxMDB2aCAtIDY1cHgpOyB9XG5cbi5jb250ZW50cyB7XG4gIGZsZXgtZ3JvdzogMTsgfVxuXG5mb290ZXIge1xuICBiYWNrZ3JvdW5kOiAjZmZmZmZmOyB9XG5cbkBtZWRpYSAobWluLXdpZHRoOiA3NjlweCkge1xuICAuY29udGVudHMsIGZvb3RlciB7XG4gICAgbWFyZ2luLWxlZnQ6IDI1MHB4OyB9XG4gIC5jbG9zZS1hc2lkZSAuY29udGVudHMsXG4gIC5jbG9zZS1hc2lkZSBmb290ZXIge1xuICAgIG1hcmdpbi1sZWZ0OiAwOyB9IH1cbiJdfQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3VzZXItaW50ZXJmYWNlL2NvbnRhaW5lcnMvdXNlci1pbnRlcmZhY2UvdXNlci1pbnRlcmZhY2UuY29tcG9uZW50LnNjc3MifQ== */"
 
 /***/ }),
 
@@ -1357,7 +1318,6 @@ module.exports = "main {\n  background: #f2f2f2;\n  min-height: calc(100vh - 65p
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserInterfaceComponent", function() { return UserInterfaceComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1368,25 +1328,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var UserInterfaceComponent = /** @class */ (function () {
-    function UserInterfaceComponent(changeDetectorRef, media) {
-        this.mobileQuery = media.matchMedia('(max-width: 768px)');
-        this._mobileQueryListener = function () { return changeDetectorRef.detectChanges(); };
-        this.mobileQuery.addListener(this._mobileQueryListener);
+    function UserInterfaceComponent() {
     }
-    UserInterfaceComponent.prototype.ngOnDestroy = function () {
-        this.mobileQuery.removeListener(this._mobileQueryListener);
-    };
-    UserInterfaceComponent.prototype.ngOnInit = function () {
-    };
+    UserInterfaceComponent.prototype.ngOnDestroy = function () { };
+    UserInterfaceComponent.prototype.ngOnInit = function () { };
     UserInterfaceComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-user-interface',
             template: __webpack_require__(/*! ./user-interface.component.html */ "./src/app/user-interface/containers/user-interface/user-interface.component.html"),
             styles: [__webpack_require__(/*! ./user-interface.component.scss */ "./src/app/user-interface/containers/user-interface/user-interface.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_1__["MediaMatcher"]])
+        __metadata("design:paramtypes", [])
     ], UserInterfaceComponent);
     return UserInterfaceComponent;
 }());
