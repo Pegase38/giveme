@@ -1,3 +1,49 @@
-<p>
-  register works!
-</p>
+<div class="clr-row">
+  <div class="clr-col-12"><h1>Create an account</h1></div>
+</div>
+<form [formGroup]="signupForm" (ngSubmit)="onSignup()" clrForm>
+  <clr-input-container>
+    <label>Username</label>
+    <input
+      clrInput
+      type="text"
+      formControlName="username"
+      name="Username"
+      id="username"
+    />
+  </clr-input-container>
+  <clr-input-container>
+    <label>Email</label>
+    <input
+      clrInput
+      type="text"
+      formControlName="email"
+      name="Email"
+      id="email"
+    />
+  </clr-input-container>
+  <clr-password-container>
+    <label>Password</label>
+    <input
+      clrPassword
+      type="text"
+      formControlName="password"
+      name="password"
+      id="password"
+    />
+  </clr-password-container>
+  <clr-password-container>
+    <label>Confirm password</label>
+    <input
+      clrPassword
+      type="text"
+      formControlName="confirmedPassword"
+      name="confirmedPassword"
+      id="confirmedPassword"
+    />
+  </clr-password-container>
+  <button class="btn btn-primary" type="submit">Create account</button>
+</form>
+<div>
+  Have an account? <a routerLink="login" routerLinkActive="active">Sign in</a>
+</div>

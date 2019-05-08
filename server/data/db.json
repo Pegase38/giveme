@@ -1,7 +1,7 @@
 {
   "ids": {
     "Annonce": 6,
-    "User": 2
+    "User": 3
   },
   "models": {
     "Annonce": {
@@ -12,7 +12,8 @@
       "5": "{\"id\": 5,\"title\": \"Collection de livre sur l'Ardèche5\",\"description\":\"genial livre5\",\"category\": \"Book\",\"state\": \"Open\",\"type\": 1,\"adress\": \"2 cours de lardeche\",\"city\": \"Aubenas\",\"owner\": \"unardechois\"}"
     },
     "User": {
-      "1": "{\"username\":\"pegase\",\"email\":\"nicolas.touzard@gmail.com\",\"password\":\"$2a$10$vYSgyvYrVDqTxuZY.1HxkuBzgBaykdMZRUJY3lTgzRSLGjQ0t0GYG\",\"id\":1}"
+      "1": "{\"username\":\"pegase\",\"email\":\"nicolas.touzard@gmail.com\",\"password\":\"$2a$10$vYSgyvYrVDqTxuZY.1HxkuBzgBaykdMZRUJY3lTgzRSLGjQ0t0GYG\",\"id\":1}",
+      "2": "{\"username\":\"pegase2\",\"email\":\"nicolas.touzard2@gmail.com\",\"password\":\"$2a$10$7eBTbWOQMQL6vpirEUCqpu09tXzKpgrmF8LkGUwgQOMfeMS392uj2\",\"id\":2}"
     }
   }
 }

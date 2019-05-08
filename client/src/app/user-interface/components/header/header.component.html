@@ -6,7 +6,7 @@
     </a>
   </div>
   <div class="header-nav">
-    <a [routerLink]="['/']" routerLinkActive="active" class="nav-link nav-icon"
+    <a routerLink="/" routerLinkActive="active" class="nav-link nav-icon"
       ><clr-icon shape="home"></clr-icon
     ></a>
   </div>
@@ -26,5 +26,16 @@
         <a (click)="onLogout()" clrDropdownItem>Logout</a>
       </div>
     </clr-dropdown>
+  </div>
+  <div *ngIf="!isSignedIn" class="header-actions">
+    <a routerLink="login" routerLinkActive="active" class="nav-link nav-text"
+      ><span>Log in</span></a
+    >
+    <a
+      routerLink="account/register"
+      routerLinkActive="active"
+      class="nav-link nav-text"
+      ><span>Sign up</span></a
+    >
   </div>
 </header>

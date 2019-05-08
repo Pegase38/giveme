@@ -414,7 +414,7 @@ var ProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  register works!\n</p>\n"
+module.exports = "<div class=\"clr-row\">\n  <div class=\"clr-col-12\"><h1>Create an account</h1></div>\n</div>\n<form [formGroup]=\"signupForm\" (ngSubmit)=\"onSignup()\" clrForm>\n  <clr-input-container>\n    <label>Username</label>\n    <input\n      clrInput\n      type=\"text\"\n      formControlName=\"username\"\n      name=\"Username\"\n      id=\"username\"\n    />\n  </clr-input-container>\n  <clr-input-container>\n    <label>Email</label>\n    <input\n      clrInput\n      type=\"text\"\n      formControlName=\"email\"\n      name=\"Email\"\n      id=\"email\"\n    />\n  </clr-input-container>\n  <clr-password-container>\n    <label>Password</label>\n    <input\n      clrPassword\n      type=\"text\"\n      formControlName=\"password\"\n      name=\"password\"\n      id=\"password\"\n    />\n  </clr-password-container>\n  <clr-password-container>\n    <label>Confirm password</label>\n    <input\n      clrPassword\n      type=\"text\"\n      formControlName=\"confirmedPassword\"\n      name=\"confirmedPassword\"\n      id=\"confirmedPassword\"\n    />\n  </clr-password-container>\n  <button class=\"btn btn-primary\" type=\"submit\">Create account</button>\n</form>\n<div>\n  Have an account? <a routerLink=\"login\" routerLinkActive=\"active\">Sign in</a>\n</div>\n"
 
 /***/ }),
 
@@ -440,6 +440,11 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterComponent", function() { return RegisterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_users_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/users.service */ "./src/app/account/services/users.service.ts");
+/* harmony import */ var _core_config_config_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../core/config/config.service */ "./src/app/core/config/config.service.ts");
+/* harmony import */ var src_app_core_logger_services_logger_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/core/logger/services/logger.service */ "./src/app/core/logger/services/logger.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -450,10 +455,34 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
 var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent() {
+    function RegisterComponent(userService, config, logger, router) {
+        this.userService = userService;
+        this.config = config;
+        this.logger = logger;
+        this.router = router;
+        this.signupForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](),
+            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](),
+            confirmedPassword: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](),
+        });
     }
-    RegisterComponent.prototype.ngOnInit = function () {
+    RegisterComponent.prototype.ngOnInit = function () { };
+    RegisterComponent.prototype.onSignup = function () {
+        var _this = this;
+        this.userService.addUser(this.signupForm.value).subscribe(function () {
+            _this.logger.info('Register and login success!');
+            _this.router.navigate(_this.config.getPostLoginDefaultRoute());
+        }, function (err) {
+            /*this.messageService.add({ severity: 'error', summary: 'Login error' }*/
+            return _this.logger.error(err);
+        });
     };
     RegisterComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -461,7 +490,10 @@ var RegisterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./register.component.html */ "./src/app/account/containers/register/register.component.html"),
             styles: [__webpack_require__(/*! ./register.component.scss */ "./src/app/account/containers/register/register.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_users_service__WEBPACK_IMPORTED_MODULE_3__["UsersService"],
+            _core_config_config_service__WEBPACK_IMPORTED_MODULE_4__["ConfigService"],
+            src_app_core_logger_services_logger_service__WEBPACK_IMPORTED_MODULE_5__["LoggerService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], RegisterComponent);
     return RegisterComponent;
 }());
@@ -480,12 +512,14 @@ var RegisterComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersService", function() { return UsersService; });
-/* harmony import */ var src_app_core_config_config_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/core/config/config.service */ "./src/app/core/config/config.service.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/models/auth/user */ "./src/app/shared/models/auth/user.ts");
-/* harmony import */ var src_app_core_auth_services_session_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/core/auth/services/session.service */ "./src/app/core/auth/services/session.service.ts");
+/* harmony import */ var _core_auth_services_auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../core/auth/services/auth.service */ "./src/app/core/auth/services/auth.service.ts");
+/* harmony import */ var src_app_core_config_config_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/core/config/config.service */ "./src/app/core/config/config.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/models/auth/user */ "./src/app/shared/models/auth/user.ts");
+/* harmony import */ var src_app_core_auth_services_session_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/core/auth/services/session.service */ "./src/app/core/auth/services/session.service.ts");
+/* harmony import */ var src_app_shared_models_auth_credential__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/shared/models/auth/credential */ "./src/app/shared/models/auth/credential.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -501,10 +535,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var UsersService = /** @class */ (function () {
-    function UsersService(http, session, config) {
+    function UsersService(http, session, auth, config) {
         this.http = http;
         this.session = session;
+        this.auth = auth;
         this.config = config;
     }
     /**
@@ -515,9 +552,9 @@ var UsersService = /** @class */ (function () {
         if (user) {
             return this.http
                 .patch(this.getResourceBaseUrl() + "/" + user.id, user)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function () {
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function () {
                 return _this.http.get(_this.getResourceBaseUrl() + "/me");
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (userResponse) { return _this.session.updateUser(new src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_4__["User"](userResponse)); }));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (userResponse) { return _this.session.updateUser(new src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_5__["User"](userResponse)); }));
         }
     };
     UsersService.prototype.updateUserPassword = function (info) {
@@ -525,24 +562,37 @@ var UsersService = /** @class */ (function () {
         if (info.newPassword !== info.confirmedPassword) {
             throw new Error('Passwords missmatched');
         }
-        return this.http.get(this.getResourceBaseUrl() + "/me").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (user) {
-            var newUser = new src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_4__["User"](user);
+        return this.http.get(this.getResourceBaseUrl() + "/me").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (user) {
+            var newUser = new src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_5__["User"](user);
             newUser.password = info.newPassword;
             return newUser;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (user) {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (user) {
             return _this.http.patch(_this.getResourceBaseUrl() + "/" + user.id, user);
+        }));
+    };
+    UsersService.prototype.addUser = function (user) {
+        var _this = this;
+        if (user.password !== user.confirmedPassword) {
+            throw new Error('Passwords missmatched');
+        }
+        delete user.confirmedPassword;
+        return this.http
+            .post(this.getResourceBaseUrl(), user)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function () {
+            return _this.auth.signIn(new src_app_shared_models_auth_credential__WEBPACK_IMPORTED_MODULE_7__["Credential"]({ email: user.email, password: user.password }));
         }));
     };
     UsersService.prototype.getResourceBaseUrl = function () {
         return this.config.getApiBaseUrl() + "users";
     };
     UsersService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])({
             providedIn: 'root',
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
-            src_app_core_auth_services_session_service__WEBPACK_IMPORTED_MODULE_5__["SessionService"],
-            src_app_core_config_config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+            src_app_core_auth_services_session_service__WEBPACK_IMPORTED_MODULE_6__["SessionService"],
+            _core_auth_services_auth_service__WEBPACK_IMPORTED_MODULE_0__["AuthService"],
+            src_app_core_config_config_service__WEBPACK_IMPORTED_MODULE_1__["ConfigService"]])
     ], UsersService);
     return UsersService;
 }());

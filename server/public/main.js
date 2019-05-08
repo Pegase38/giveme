@@ -1074,6 +1074,7 @@ var User = /** @class */ (function () {
         this.username = args.username;
         this.email = args.email;
         this.password = args.password;
+        this.confirmedPassword = args.confirmedPassword;
     }
     return User;
 }());
@@ -1193,7 +1194,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"header-3\">\n  <div class=\"branding\">\n    <a class=\"nav-link\">\n      <clr-icon shape=\"shield\"></clr-icon>\n      <span class=\"title\">{{ title }}</span>\n    </a>\n  </div>\n  <div class=\"header-nav\">\n    <a [routerLink]=\"['/']\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\n      ><clr-icon shape=\"home\"></clr-icon\n    ></a>\n  </div>\n  <div *ngIf=\"isSignedIn\" class=\"header-actions\">\n    <clr-dropdown class=\"dropdown bottom-right\">\n      <button class=\"nav-icon\" clrDropdownToggle>\n        <clr-icon shape=\"user\"></clr-icon>\n        <clr-icon shape=\"caret down\"></clr-icon>\n      </button>\n      <div class=\"dropdown-menu\">\n        <a\n          [routerLink]=\"['account/profile']\"\n          routerLinkActive=\"active\"\n          clrDropdownItem\n          >Profile</a\n        >\n        <a (click)=\"onLogout()\" clrDropdownItem>Logout</a>\n      </div>\n    </clr-dropdown>\n  </div>\n</header>\n"
+module.exports = "<header class=\"header-3\">\n  <div class=\"branding\">\n    <a class=\"nav-link\">\n      <clr-icon shape=\"shield\"></clr-icon>\n      <span class=\"title\">{{ title }}</span>\n    </a>\n  </div>\n  <div class=\"header-nav\">\n    <a routerLink=\"/\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\n      ><clr-icon shape=\"home\"></clr-icon\n    ></a>\n  </div>\n  <div *ngIf=\"isSignedIn\" class=\"header-actions\">\n    <clr-dropdown class=\"dropdown bottom-right\">\n      <button class=\"nav-icon\" clrDropdownToggle>\n        <clr-icon shape=\"user\"></clr-icon>\n        <clr-icon shape=\"caret down\"></clr-icon>\n      </button>\n      <div class=\"dropdown-menu\">\n        <a\n          [routerLink]=\"['account/profile']\"\n          routerLinkActive=\"active\"\n          clrDropdownItem\n          >Profile</a\n        >\n        <a (click)=\"onLogout()\" clrDropdownItem>Logout</a>\n      </div>\n    </clr-dropdown>\n  </div>\n  <div *ngIf=\"!isSignedIn\" class=\"header-actions\">\n    <a routerLink=\"login\" routerLinkActive=\"active\" class=\"nav-link nav-text\"\n      ><span>Log in</span></a\n    >\n    <a\n      routerLink=\"account/register\"\n      routerLinkActive=\"active\"\n      class=\"nav-link nav-text\"\n      ><span>Sign up</span></a\n    >\n  </div>\n</header>\n"
 
 /***/ }),
 
