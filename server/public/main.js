@@ -10,10 +10,12 @@
 var map = {
 	"./account/account.module": [
 		"./src/app/account/account.module.ts",
+		"common",
 		"account-account-module"
 	],
 	"./annonces/annonces.module": [
 		"./src/app/annonces/annonces.module.ts",
+		"common",
 		"annonces-annonces-module"
 	]
 };
@@ -26,7 +28,7 @@ function webpackAsyncContext(req) {
 			throw e;
 		});
 	}
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		var id = ids[0];
 		return __webpack_require__(id);
 	});
@@ -51,7 +53,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _core_auth_guards_is_user_signed_in_guard_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./core/auth/guards/is-user-signed-in-guard.guard */ "./src/app/core/auth/guards/is-user-signed-in-guard.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60,11 +61,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 
 
-
 var routes = [
     {
+        path: '',
+        redirectTo: 'annonces',
+        pathMatch: 'full',
+    },
+    {
         path: 'annonces',
-        canActivate: [_core_auth_guards_is_user_signed_in_guard_guard__WEBPACK_IMPORTED_MODULE_2__["IsUserSignedInGuardGuard"]],
         loadChildren: './annonces/annonces.module#AnnoncesModule',
     },
     {
@@ -215,64 +219,6 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/core/auth/guards/is-user-signed-in-guard.guard.ts":
-/*!*******************************************************************!*\
-  !*** ./src/app/core/auth/guards/is-user-signed-in-guard.guard.ts ***!
-  \*******************************************************************/
-/*! exports provided: IsUserSignedInGuardGuard */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IsUserSignedInGuardGuard", function() { return IsUserSignedInGuardGuard; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _services_session_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/session.service */ "./src/app/core/auth/services/session.service.ts");
-/* harmony import */ var _config_config_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config/config.service */ "./src/app/core/config/config.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var IsUserSignedInGuardGuard = /** @class */ (function () {
-    function IsUserSignedInGuardGuard(session, router, config) {
-        this.session = session;
-        this.router = router;
-        this.config = config;
-    }
-    IsUserSignedInGuardGuard.prototype.canActivate = function (route, state) {
-        var _this = this;
-        return this.session.isSignedIn().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (isSignedIn) {
-            if (isSignedIn !== true) {
-                _this.router.navigate(_this.config.getLoginRoute());
-            }
-        }));
-    };
-    IsUserSignedInGuardGuard = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root',
-        }),
-        __metadata("design:paramtypes", [_services_session_service__WEBPACK_IMPORTED_MODULE_3__["SessionService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _config_config_service__WEBPACK_IMPORTED_MODULE_4__["ConfigService"]])
-    ], IsUserSignedInGuardGuard);
-    return IsUserSignedInGuardGuard;
 }());
 
 
@@ -936,11 +882,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var routes = [
     {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full',
-    },
-    {
         path: 'login',
         canActivate: [_core_auth_guards_is_user_unknown_guard__WEBPACK_IMPORTED_MODULE_3__["IsUserUnknownGuard"]],
         component: _containers_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"],
@@ -1269,7 +1210,7 @@ var HeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidenav\">\n  <section class=\"sidenav-content\">\n    <a\n      [routerLink]=\"['/annonces', 'offres']\"\n      routerLinkActive=\"active\"\n      class=\"nav-link\"\n      >Offres</a\n    >\n    <a\n      [routerLink]=\"['/annonces', 'newAnnonce']\"\n      routerLinkActive=\"active\"\n      class=\"nav-link\"\n      >Déposer une annonce</a\n    >\n  </section>\n</nav>\n"
+module.exports = "<nav class=\"sidenav\">\n  <section class=\"sidenav-content\">\n    <a\n      [routerLink]=\"['/annonces', 'offres']\"\n      routerLinkActive=\"active\"\n      class=\"nav-link\"\n      >Offres</a\n    >\n    <a\n      [routerLink]=\"['/annonces', 'add-annonce']\"\n      routerLinkActive=\"active\"\n      class=\"nav-link\"\n      >Déposer une annonce</a\n    >\n  </section>\n</nav>\n"
 
 /***/ }),
 

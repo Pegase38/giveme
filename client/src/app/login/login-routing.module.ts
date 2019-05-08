@@ -6,11 +6,6 @@ import { IsUserUnknownGuard } from '../core/auth/guards/is-user-unknown.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
     path: 'login',
     canActivate: [IsUserUnknownGuard],
     component: LoginComponent,

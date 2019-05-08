@@ -5,8 +5,12 @@ import { IsUserSignedInGuardGuard } from './core/auth/guards/is-user-signed-in-g
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'annonces',
+    pathMatch: 'full',
+  },
+  {
     path: 'annonces',
-    canActivate: [IsUserSignedInGuardGuard],
     loadChildren: './annonces/annonces.module#AnnoncesModule',
   },
   {

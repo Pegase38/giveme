@@ -66,7 +66,6 @@ export class AnnonceController {
       },
     },
   })
-  @authenticate('jwt')
   async find(
     @param.query.object('filter', getFilterSchemaFor(Annonce)) filter?: Filter,
   ): Promise<Annonce[]> {
@@ -81,6 +80,7 @@ export class AnnonceController {
       },
     },
   })
+  @authenticate('jwt')
   async updateAll(
     @requestBody() annonce: Annonce,
     @param.query.object('where', getWhereSchemaFor(Annonce)) where?: Where,
@@ -107,6 +107,7 @@ export class AnnonceController {
       },
     },
   })
+  @authenticate('jwt')
   async updateById(
     @param.path.number('id') id: number,
     @requestBody() annonce: Annonce,
@@ -121,6 +122,7 @@ export class AnnonceController {
       },
     },
   })
+  @authenticate('jwt')
   async replaceById(
     @param.path.number('id') id: number,
     @requestBody() annonce: Annonce,
@@ -135,6 +137,7 @@ export class AnnonceController {
       },
     },
   })
+  @authenticate('jwt')
   async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.annonceRepository.deleteById(id);
   }

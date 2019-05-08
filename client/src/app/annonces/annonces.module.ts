@@ -5,10 +5,10 @@ import { SharedModule } from '../shared/shared.module';
 
 import { OffresComponent } from './containers/offres/offres.component';
 import { OffreComponent } from './components/offre/offre.component';
+import { AddAnnonceComponent } from './containers/add-annonce/add-annonce.component';
 
 @NgModule({
-  declarations: [OffresComponent, OffreComponent],
+  declarations: [OffresComponent, OffreComponent, AddAnnonceComponent],
   imports: [SharedModule, AnnoncesRoutingModule],
-  exports: [OffresComponent],
 })
 export class AnnoncesModule {}
