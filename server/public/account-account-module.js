@@ -133,7 +133,7 @@ var AccountModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  change-password works!\n</p>\n"
+module.exports = "<div class=\"clr-row\">\n  <div class=\"clr-col-12\"><h1>Change password</h1></div>\n</div>\n<ng-container *ngIf=\"user\">\n  <form\n    [formGroup]=\"changePasswordForm\"\n    (ngSubmit)=\"onChangePassword()\"\n    clrForm\n  >\n    <input clrInput type=\"hidden\" formControlName=\"id\" name=\"id\" id=\"id\" />\n    <clr-password-container>\n      <label>New password</label>\n      <input\n        clrPassword\n        type=\"text\"\n        formControlName=\"newPassword\"\n        name=\"newPassword\"\n        id=\"newPassword\"\n      />\n    </clr-password-container>\n    <clr-password-container>\n      <label>Confirm password</label>\n      <input\n        clrPassword\n        type=\"text\"\n        formControlName=\"confirmedPassword\"\n        name=\"confirmedPassword\"\n        id=\"confirmedPassword\"\n      />\n    </clr-password-container>\n    <button class=\"btn btn-primary\" type=\"submit\">Save changes</button>\n    <button class=\"btn\" type=\"button\" (click)=\"onCancel()\">Cancel</button>\n  </form>\n</ng-container>\n"
 
 /***/ }),
 
@@ -159,6 +159,12 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangePasswordComponent", function() { return ChangePasswordComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_users_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/users.service */ "./src/app/account/services/users.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var src_app_core_auth_services_session_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/core/auth/services/session.service */ "./src/app/core/auth/services/session.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -169,10 +175,47 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
+
 var ChangePasswordComponent = /** @class */ (function () {
-    function ChangePasswordComponent() {
+    function ChangePasswordComponent(session, router, userService) {
+        this.session = session;
+        this.router = router;
+        this.userService = userService;
+        this.destroy$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
     }
     ChangePasswordComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.session
+            .getUser()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.destroy$))
+            .subscribe(function (user) {
+            _this.changePasswordForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
+                id: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](user.id),
+                newPassword: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](),
+                confirmedPassword: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](),
+            });
+            _this.user = user;
+        });
+    };
+    ChangePasswordComponent.prototype.onChangePassword = function () {
+        var _this = this;
+        this.userService
+            .updateUserPassword(this.changePasswordForm.value)
+            .subscribe(function () {
+            _this.router.navigate(['account']);
+        });
+    };
+    ChangePasswordComponent.prototype.onCancel = function () {
+        this.router.navigate(['account']);
+    };
+    ChangePasswordComponent.prototype.ngOnDestroy = function () {
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
     };
     ChangePasswordComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -180,7 +223,9 @@ var ChangePasswordComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./change-password.component.html */ "./src/app/account/containers/change-password/change-password.component.html"),
             styles: [__webpack_require__(/*! ./change-password.component.scss */ "./src/app/account/containers/change-password/change-password.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [src_app_core_auth_services_session_service__WEBPACK_IMPORTED_MODULE_6__["SessionService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _services_users_service__WEBPACK_IMPORTED_MODULE_4__["UsersService"]])
     ], ChangePasswordComponent);
     return ChangePasswordComponent;
 }());
@@ -468,13 +513,25 @@ var UsersService = /** @class */ (function () {
     UsersService.prototype.updateUser = function (user) {
         var _this = this;
         if (user) {
-            console.log(user.id);
             return this.http
                 .patch(this.getResourceBaseUrl() + "/" + user.id, user)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function () {
                 return _this.http.get(_this.getResourceBaseUrl() + "/me");
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (userResponse) { return _this.session.updateUser(new src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_4__["User"](userResponse)); }));
         }
+    };
+    UsersService.prototype.updateUserPassword = function (info) {
+        var _this = this;
+        if (info.newPassword !== info.confirmedPassword) {
+            throw new Error('Passwords missmatched');
+        }
+        return this.http.get(this.getResourceBaseUrl() + "/me").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (user) {
+            var newUser = new src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_4__["User"](user);
+            newUser.password = info.newPassword;
+            return newUser;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (user) {
+            return _this.http.patch(_this.getResourceBaseUrl() + "/" + user.id, user);
+        }));
     };
     UsersService.prototype.getResourceBaseUrl = function () {
         return this.config.getApiBaseUrl() + "users";

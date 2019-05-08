@@ -1073,6 +1073,7 @@ var User = /** @class */ (function () {
         this.id = args.id;
         this.username = args.username;
         this.email = args.email;
+        this.password = args.password;
     }
     return User;
 }());

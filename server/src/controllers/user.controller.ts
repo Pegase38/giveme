@@ -100,10 +100,18 @@ export class UserController {
       },
     },
   })
+  @authenticate('jwt')
   async updateById(
+    @inject('authentication.currentUser') currentUser: UserProfile,
     @param.path.number('id') id: number,
     @requestBody() user: User,
   ): Promise<void> {
+    if (((currentUser.id as unknown) as number) !== id)
+      throw Error("Can't modify others users");
+    if (user.password !== undefined && currentUser.email !== undefined) {
+      validateCredentials({email: currentUser.email, password: user.password});
+      user.password = await this.passwordHahser.hashPassword(user.password);
+    }
     await this.userRepository.updateById(id, user);
   }
 }

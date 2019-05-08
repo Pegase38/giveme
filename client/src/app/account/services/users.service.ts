@@ -22,7 +22,6 @@ export class UsersService {
    */
   updateUser(user: User) {
     if (user) {
-      console.log(user.id);
       return this.http
         .patch(`${this.getResourceBaseUrl()}/${user.id}`, user)
         .pipe(
@@ -32,6 +31,26 @@ export class UsersService {
           map(userResponse => this.session.updateUser(new User(userResponse)))
         );
     }
+  }
+
+  updateUserPassword(info: {
+    id: number;
+    newPassword: string;
+    confirmedPassword: string;
+  }) {
+    if (info.newPassword !== info.confirmedPassword) {
+      throw new Error('Passwords missmatched');
+    }
+    return this.http.get<UserResponse>(`${this.getResourceBaseUrl()}/me`).pipe(
+      map(user => {
+        const newUser = new User(user);
+        newUser.password = info.newPassword;
+        return newUser;
+      }),
+      switchMap(user =>
+        this.http.patch(`${this.getResourceBaseUrl()}/${user.id}`, user)
+      )
+    );
   }
 
   private getResourceBaseUrl() {
