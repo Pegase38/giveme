@@ -1,5 +1,28 @@
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-  <input formControlName="email" placeholder="Email" type="text" />
-  <input formControlName="password" placeholder="Password" type="password" />
-  <button>LOG IN</button>
-</form>
+<div class="login-wrapper">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login">
+    <div class="login-group">
+      <clr-input-container>
+        <input
+          type="text"
+          name="email"
+          formControlName="email"
+          clrInput
+          placeholder="Email"
+        />
+      </clr-input-container>
+      <clr-password-container>
+        <input
+          type="password"
+          name="password"
+          formControlName="password"
+          clrPassword
+          placeholder="Password"
+        />
+      </clr-password-container>
+      <div class="error active">
+        Invalid user name or password
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>

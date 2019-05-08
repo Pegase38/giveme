@@ -789,7 +789,7 @@ var LoggerService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin()\">\n  <input formControlName=\"email\" placeholder=\"Email\" type=\"text\" />\n  <input formControlName=\"password\" placeholder=\"Password\" type=\"password\" />\n  <button>LOG IN</button>\n</form>\n"
+module.exports = "<div class=\"login-wrapper\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin()\" class=\"login\">\n    <div class=\"login-group\">\n      <clr-input-container>\n        <input\n          type=\"text\"\n          name=\"email\"\n          formControlName=\"email\"\n          clrInput\n          placeholder=\"Email\"\n        />\n      </clr-input-container>\n      <clr-password-container>\n        <input\n          type=\"password\"\n          name=\"password\"\n          formControlName=\"password\"\n          clrPassword\n          placeholder=\"Password\"\n        />\n      </clr-password-container>\n      <div class=\"error active\">\n        Invalid user name or password\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary\">Login</button>\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
