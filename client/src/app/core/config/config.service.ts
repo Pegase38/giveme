@@ -23,4 +23,8 @@ export class ConfigService {
   getPostLoginDefaultRoute() {
     return ['annonces'];
   }
+
+  getPostLogoutDefaultRoute() {
+    return ['/'];
+  }
 }

@@ -635,6 +635,9 @@ var ConfigService = /** @class */ (function () {
     ConfigService.prototype.getPostLoginDefaultRoute = function () {
         return ['annonces'];
     };
+    ConfigService.prototype.getPostLogoutDefaultRoute = function () {
+        return ['/'];
+    };
     ConfigService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root',
@@ -1168,7 +1171,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"header-3\">\n  <div class=\"branding\">\n    <a class=\"nav-link\">\n      <clr-icon shape=\"shield\"></clr-icon>\n      <span class=\"title\">{{ title }}</span>\n    </a>\n  </div>\n  <div class=\"header-nav\">\n    <a [routerLink]=\"['/']\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\n      ><clr-icon shape=\"home\"></clr-icon\n    ></a>\n  </div>\n  <div class=\"header-actions\">\n    <clr-dropdown class=\"dropdown bottom-right\">\n      <button class=\"nav-icon\" clrDropdownToggle>\n        <clr-icon shape=\"user\"></clr-icon>\n        <clr-icon shape=\"caret down\"></clr-icon>\n      </button>\n      <div class=\"dropdown-menu\">\n        <a\n          [routerLink]=\"['/user/settings']\"\n          routerLinkActive=\"active\"\n          clrDropdownItem\n          >Preferences</a\n        >\n        <a [routerLink]=\"['/logout']\" routerLinkActive=\"active\" clrDropdownItem\n          >Log out</a\n        >\n      </div>\n    </clr-dropdown>\n  </div>\n</header>\n"
+module.exports = "<header class=\"header-3\">\n  <div class=\"branding\">\n    <a class=\"nav-link\">\n      <clr-icon shape=\"shield\"></clr-icon>\n      <span class=\"title\">{{ title }}</span>\n    </a>\n  </div>\n  <div class=\"header-nav\">\n    <a [routerLink]=\"['/']\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\n      ><clr-icon shape=\"home\"></clr-icon\n    ></a>\n  </div>\n  <div *ngIf=\"isSignedIn\" class=\"header-actions\">\n    <clr-dropdown class=\"dropdown bottom-right\">\n      <button class=\"nav-icon\" clrDropdownToggle>\n        <clr-icon shape=\"user\"></clr-icon>\n        <clr-icon shape=\"caret down\"></clr-icon>\n      </button>\n      <div class=\"dropdown-menu\">\n        <a\n          [routerLink]=\"['/user/settings']\"\n          routerLinkActive=\"active\"\n          clrDropdownItem\n          >Preferences</a\n        >\n        <a (click)=\"onLogout()\" clrDropdownItem>Log out</a>\n      </div>\n    </clr-dropdown>\n  </div>\n</header>\n"
 
 /***/ }),
 
@@ -1207,8 +1210,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var HeaderComponent = /** @class */ (function () {
     function HeaderComponent() {
         this.title = 'GiveMe';
+        this.logout = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     HeaderComponent.prototype.ngOnInit = function () { };
+    HeaderComponent.prototype.onLogout = function () {
+        this.logout.emit();
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], HeaderComponent.prototype, "isSignedIn", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+    ], HeaderComponent.prototype, "logout", void 0);
     HeaderComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-header',
@@ -1292,7 +1307,7 @@ var NavComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container\">\n  <app-header></app-header>\n  <div class=\"content-container\">\n    <div class=\"content-area\">\n      <router-outlet></router-outlet>\n      <app-footer></app-footer>\n    </div>\n    <app-nav class=\"sidenav\"></app-nav>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-container\">\n  <app-header\n    [isSignedIn]=\"isSignedIn$ | async\"\n    (logout)=\"onLogout()\"\n  ></app-header>\n  <div class=\"content-container\">\n    <div class=\"content-area\">\n      <router-outlet></router-outlet>\n      <app-footer></app-footer>\n    </div>\n    <app-nav class=\"sidenav\"></app-nav>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1318,6 +1333,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserInterfaceComponent", function() { return UserInterfaceComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_core_auth_services_session_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/core/auth/services/session.service */ "./src/app/core/auth/services/session.service.ts");
+/* harmony import */ var src_app_core_config_config_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/core/config/config.service */ "./src/app/core/config/config.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1328,18 +1346,32 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var UserInterfaceComponent = /** @class */ (function () {
-    function UserInterfaceComponent() {
+    function UserInterfaceComponent(session, router, config) {
+        this.session = session;
+        this.router = router;
+        this.config = config;
     }
+    UserInterfaceComponent.prototype.ngOnInit = function () {
+        this.isSignedIn$ = this.session.isSignedIn();
+    };
+    UserInterfaceComponent.prototype.onLogout = function () {
+        this.session.markTokenExpired();
+        this.router.navigate(this.config.getPostLogoutDefaultRoute());
+    };
     UserInterfaceComponent.prototype.ngOnDestroy = function () { };
-    UserInterfaceComponent.prototype.ngOnInit = function () { };
     UserInterfaceComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-user-interface',
             template: __webpack_require__(/*! ./user-interface.component.html */ "./src/app/user-interface/containers/user-interface/user-interface.component.html"),
             styles: [__webpack_require__(/*! ./user-interface.component.scss */ "./src/app/user-interface/containers/user-interface/user-interface.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [src_app_core_auth_services_session_service__WEBPACK_IMPORTED_MODULE_2__["SessionService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            src_app_core_config_config_service__WEBPACK_IMPORTED_MODULE_3__["ConfigService"]])
     ], UserInterfaceComponent);
     return UserInterfaceComponent;
 }());

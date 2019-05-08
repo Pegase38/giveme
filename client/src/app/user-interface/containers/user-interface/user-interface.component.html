@@ -1,5 +1,8 @@
 <div class="main-container">
-  <app-header></app-header>
+  <app-header
+    [isSignedIn]="isSignedIn$ | async"
+    (logout)="onLogout()"
+  ></app-header>
   <div class="content-container">
     <div class="content-area">
       <router-outlet></router-outlet>

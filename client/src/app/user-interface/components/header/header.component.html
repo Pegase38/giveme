@@ -10,7 +10,7 @@
       ><clr-icon shape="home"></clr-icon
     ></a>
   </div>
-  <div class="header-actions">
+  <div *ngIf="isSignedIn" class="header-actions">
     <clr-dropdown class="dropdown bottom-right">
       <button class="nav-icon" clrDropdownToggle>
         <clr-icon shape="user"></clr-icon>
@@ -23,9 +23,7 @@
           clrDropdownItem
           >Preferences</a
         >
-        <a [routerLink]="['/logout']" routerLinkActive="active" clrDropdownItem
-          >Log out</a
-        >
+        <a (click)="onLogout()" clrDropdownItem>Log out</a>
       </div>
     </clr-dropdown>
   </div>
