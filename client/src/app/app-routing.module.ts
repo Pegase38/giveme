@@ -9,6 +9,10 @@ const routes: Routes = [
     canActivate: [IsUserSignedInGuardGuard],
     loadChildren: './annonces/annonces.module#AnnoncesModule',
   },
+  {
+    path: 'account',
+    loadChildren: './account/account.module#AccountModule',
+  },
 ];
 
 @NgModule({

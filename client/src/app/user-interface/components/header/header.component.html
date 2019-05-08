@@ -18,12 +18,12 @@
       </button>
       <div class="dropdown-menu">
         <a
-          [routerLink]="['/user/settings']"
+          [routerLink]="['account/profile']"
           routerLinkActive="active"
           clrDropdownItem
-          >Preferences</a
+          >Profile</a
         >
-        <a (click)="onLogout()" clrDropdownItem>Log out</a>
+        <a (click)="onLogout()" clrDropdownItem>Logout</a>
       </div>
     </clr-dropdown>
   </div>

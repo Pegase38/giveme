@@ -1,5 +1,5 @@
 import {inject} from '@loopback/context';
-import {post, requestBody, get} from '@loopback/rest';
+import {post, requestBody, get, param, patch} from '@loopback/rest';
 import {Setter} from '@loopback/core';
 import {repository} from '@loopback/repository';
 import {
@@ -60,8 +60,8 @@ export class UserController {
   @authenticate('jwt')
   async printCurrentUser(
     @inject('authentication.currentUser') currentUser: UserProfile,
-  ): Promise<UserProfile> {
-    return currentUser;
+  ): Promise<User> {
+    return this.userRepository.findById((currentUser.id as unknown) as number);
   }
 
   @post('/users/login', {
@@ -91,5 +91,19 @@ export class UserController {
       credentials,
     );
     return {token};
+  }
+
+  @patch('/users/{id}', {
+    responses: {
+      '204': {
+        description: 'User PATCH success',
+      },
+    },
+  })
+  async updateById(
+    @param.path.number('id') id: number,
+    @requestBody() user: User,
+  ): Promise<void> {
+    await this.userRepository.updateById(id, user);
   }
 }

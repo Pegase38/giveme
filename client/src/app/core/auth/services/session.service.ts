@@ -72,6 +72,18 @@ export class SessionService {
     this._saveState(state);
   }
 
+  updateUser(userData: User) {
+    console.log(userData);
+    const state = Object.assign(
+      new SessionState(),
+      this.sessionState$.getValue(),
+      { user: userData }
+    );
+
+    this.sessionState$.next(state);
+    this._saveState(state);
+  }
+
   private _initializeState() {
     this.sessionState$.next(this._loadState() || new SessionState());
   }

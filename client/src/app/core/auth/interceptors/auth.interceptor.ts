@@ -37,9 +37,18 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       tap(
         () => {},
-        () => {
-          this.session.markTokenExpired();
-          this.router.navigate(this.config.getLoginRoute());
+        err => {
+          if (err.status === 401) {
+            this.logger.error('Need to be logged!');
+            this.session.markTokenExpired();
+            this.router.navigate(this.config.getLoginRoute());
+          } else if (err.status === 403) {
+            this.logger.error('Not authorized!');
+          } else if (err.status === 404) {
+            this.logger.error('Not found!');
+          } else {
+            this.logger.error('Error!');
+          }
         }
       )
     );

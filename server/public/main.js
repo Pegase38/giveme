@@ -8,6 +8,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./account/account.module": [
+		"./src/app/account/account.module.ts",
+		"account-account-module"
+	],
 	"./annonces/annonces.module": [
 		"./src/app/annonces/annonces.module.ts",
 		"annonces-annonces-module"
@@ -62,6 +66,10 @@ var routes = [
         path: 'annonces',
         canActivate: [_core_auth_guards_is_user_signed_in_guard_guard__WEBPACK_IMPORTED_MODULE_2__["IsUserSignedInGuardGuard"]],
         loadChildren: './annonces/annonces.module#AnnoncesModule',
+    },
+    {
+        path: 'account',
+        loadChildren: './account/account.module#AccountModule',
     },
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -377,9 +385,21 @@ var AuthInterceptor = /** @class */ (function () {
         var authReq = req.clone({
             headers: req.headers.set('Authorization', authToken),
         });
-        return next.handle(authReq).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function () { }, function () {
-            _this.session.markTokenExpired();
-            _this.router.navigate(_this.config.getLoginRoute());
+        return next.handle(authReq).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function () { }, function (err) {
+            if (err.status === 401) {
+                _this.logger.error('Need to be logged!');
+                _this.session.markTokenExpired();
+                _this.router.navigate(_this.config.getLoginRoute());
+            }
+            else if (err.status === 403) {
+                _this.logger.error('Not authorized!');
+            }
+            else if (err.status === 404) {
+                _this.logger.error('Not found!');
+            }
+            else {
+                _this.logger.error('Error!');
+            }
         }));
     };
     AuthInterceptor = __decorate([
@@ -449,14 +469,9 @@ var AuthService = /** @class */ (function () {
             return _this.session.updateState(new src_app_shared_models_auth_session_state__WEBPACK_IMPORTED_MODULE_5__["SessionState"]({
                 token: authResponse.token,
             }));
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (authResponse) {
-            return _this.http.get(_this.getResourceBaseUrl() + "/me").pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (userResponse) {
-                return _this.session.updateState(new src_app_shared_models_auth_session_state__WEBPACK_IMPORTED_MODULE_5__["SessionState"]({
-                    token: authResponse.token,
-                    user: new src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_6__["User"](userResponse),
-                }));
-            }));
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function () { return undefined; }));
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function () {
+            return _this.http.get(_this.getResourceBaseUrl() + "/me");
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (userResponse) { return _this.session.updateUser(new src_app_shared_models_auth_user__WEBPACK_IMPORTED_MODULE_6__["User"](userResponse)); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function () { return undefined; }));
     };
     /*signOut() {
       this.session.state$
@@ -565,6 +580,12 @@ var SessionService = /** @class */ (function () {
     };
     SessionService.prototype.updateState = function (stateData) {
         var state = Object.assign(new src_app_shared_models_auth_session_state__WEBPACK_IMPORTED_MODULE_3__["SessionState"](), this.sessionState$.getValue(), stateData);
+        this.sessionState$.next(state);
+        this._saveState(state);
+    };
+    SessionService.prototype.updateUser = function (userData) {
+        console.log(userData);
+        var state = Object.assign(new src_app_shared_models_auth_session_state__WEBPACK_IMPORTED_MODULE_3__["SessionState"](), this.sessionState$.getValue(), { user: userData });
         this.sessionState$.next(state);
         this._saveState(state);
     };
@@ -789,7 +810,7 @@ var LoggerService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-wrapper\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin()\" class=\"login\">\n    <div class=\"login-group\">\n      <clr-input-container>\n        <input\n          type=\"text\"\n          name=\"email\"\n          formControlName=\"email\"\n          clrInput\n          placeholder=\"Email\"\n        />\n      </clr-input-container>\n      <clr-password-container>\n        <input\n          type=\"password\"\n          name=\"password\"\n          formControlName=\"password\"\n          clrPassword\n          placeholder=\"Password\"\n        />\n      </clr-password-container>\n      <div class=\"error active\">\n        Invalid user name or password\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary\">Login</button>\n    </div>\n  </form>\n</div>\n"
+module.exports = "<div class=\"login-wrapper\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin()\" class=\"login\">\n    <section class=\"title\">\n      <h3 class=\"welcome\">Login page</h3>\n    </section>\n    <div class=\"login-group\">\n      <clr-input-container>\n        <input\n          type=\"text\"\n          name=\"email\"\n          formControlName=\"email\"\n          clrInput\n          placeholder=\"Email\"\n        />\n      </clr-input-container>\n      <clr-password-container>\n        <input\n          type=\"password\"\n          name=\"password\"\n          formControlName=\"password\"\n          clrPassword\n          placeholder=\"Password\"\n        />\n      </clr-password-container>\n      <div class=\"error active\">\n        Invalid user name or password\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary\">Login</button>\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -1050,7 +1071,7 @@ var User = /** @class */ (function () {
     function User(args) {
         if (args === void 0) { args = {}; }
         this.id = args.id;
-        this.name = args.name;
+        this.username = args.username;
         this.email = args.email;
     }
     return User;
@@ -1171,7 +1192,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"header-3\">\n  <div class=\"branding\">\n    <a class=\"nav-link\">\n      <clr-icon shape=\"shield\"></clr-icon>\n      <span class=\"title\">{{ title }}</span>\n    </a>\n  </div>\n  <div class=\"header-nav\">\n    <a [routerLink]=\"['/']\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\n      ><clr-icon shape=\"home\"></clr-icon\n    ></a>\n  </div>\n  <div *ngIf=\"isSignedIn\" class=\"header-actions\">\n    <clr-dropdown class=\"dropdown bottom-right\">\n      <button class=\"nav-icon\" clrDropdownToggle>\n        <clr-icon shape=\"user\"></clr-icon>\n        <clr-icon shape=\"caret down\"></clr-icon>\n      </button>\n      <div class=\"dropdown-menu\">\n        <a\n          [routerLink]=\"['/user/settings']\"\n          routerLinkActive=\"active\"\n          clrDropdownItem\n          >Preferences</a\n        >\n        <a (click)=\"onLogout()\" clrDropdownItem>Log out</a>\n      </div>\n    </clr-dropdown>\n  </div>\n</header>\n"
+module.exports = "<header class=\"header-3\">\n  <div class=\"branding\">\n    <a class=\"nav-link\">\n      <clr-icon shape=\"shield\"></clr-icon>\n      <span class=\"title\">{{ title }}</span>\n    </a>\n  </div>\n  <div class=\"header-nav\">\n    <a [routerLink]=\"['/']\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\n      ><clr-icon shape=\"home\"></clr-icon\n    ></a>\n  </div>\n  <div *ngIf=\"isSignedIn\" class=\"header-actions\">\n    <clr-dropdown class=\"dropdown bottom-right\">\n      <button class=\"nav-icon\" clrDropdownToggle>\n        <clr-icon shape=\"user\"></clr-icon>\n        <clr-icon shape=\"caret down\"></clr-icon>\n      </button>\n      <div class=\"dropdown-menu\">\n        <a\n          [routerLink]=\"['account/profile']\"\n          routerLinkActive=\"active\"\n          clrDropdownItem\n          >Profile</a\n        >\n        <a (click)=\"onLogout()\" clrDropdownItem>Logout</a>\n      </div>\n    </clr-dropdown>\n  </div>\n</header>\n"
 
 /***/ }),
 

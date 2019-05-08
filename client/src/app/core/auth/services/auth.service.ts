@@ -38,18 +38,10 @@ export class AuthService {
             })
           )
         ),
-        switchMap(authResponse =>
-          this.http.get<UserResponse>(`${this.getResourceBaseUrl()}/me`).pipe(
-            map(userResponse =>
-              this.session.updateState(
-                new SessionState({
-                  token: authResponse.token,
-                  user: new User(userResponse),
-                })
-              )
-            )
-          )
+        switchMap(() =>
+          this.http.get<UserResponse>(`${this.getResourceBaseUrl()}/me`)
         ),
+        map(userResponse => this.session.updateUser(new User(userResponse))),
         map(() => undefined)
       );
   }

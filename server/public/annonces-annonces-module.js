@@ -236,8 +236,9 @@ var OffresComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnonceService", function() { return AnnonceService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var src_app_core_config_config_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/core/config/config.service */ "./src/app/core/config/config.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -249,26 +250,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var AnnonceService = /** @class */ (function () {
-    function AnnonceService(http) {
+    function AnnonceService(http, config) {
         this.http = http;
-        this.apiBaseURL = 'http://localhost:3000/';
-        this.basePath = 'annonces';
+        this.config = config;
     }
     AnnonceService.prototype.getAnnonces = function () {
-        return this.http.get(this.apiBaseURL + this.basePath);
+        return this.http.get(this.getResourceBaseUrl());
     };
     AnnonceService.prototype.add = function (annonce) {
         if (annonce) {
-            return this.http.post(this.apiBaseURL + this.basePath, annonce);
+            return this.http.post(this.getResourceBaseUrl(), annonce);
         }
     };
     AnnonceService.prototype.edit = function (annonce) { };
+    AnnonceService.prototype.getResourceBaseUrl = function () {
+        return this.config.getApiBaseUrl() + "annonces";
+    };
     AnnonceService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root',
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], src_app_core_config_config_service__WEBPACK_IMPORTED_MODULE_0__["ConfigService"]])
     ], AnnonceService);
     return AnnonceService;
 }());
