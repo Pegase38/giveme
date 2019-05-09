@@ -756,7 +756,7 @@ var LoggerService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-wrapper\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin()\" class=\"login\">\n    <section class=\"title\">\n      <h3 class=\"welcome\">Login page</h3>\n    </section>\n    <div class=\"login-group\">\n      <clr-input-container>\n        <input\n          type=\"text\"\n          name=\"email\"\n          formControlName=\"email\"\n          clrInput\n          placeholder=\"Email\"\n        />\n      </clr-input-container>\n      <clr-password-container>\n        <input\n          type=\"password\"\n          name=\"password\"\n          formControlName=\"password\"\n          clrPassword\n          placeholder=\"Password\"\n        />\n      </clr-password-container>\n      <div class=\"error active\">\n        Invalid user name or password\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary\">Login</button>\n    </div>\n  </form>\n</div>\n"
+module.exports = "<div class=\"login-wrapper\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin()\" class=\"login\">\n    <section class=\"title\">\n      <h3 class=\"welcome\">Login page</h3>\n    </section>\n    <div class=\"login-group\">\n      <clr-input-container>\n        <input\n          type=\"text\"\n          name=\"email\"\n          formControlName=\"email\"\n          clrInput\n          placeholder=\"Email\"\n        />\n        <clr-control-error>\n          <div *ngIf=\"email.hasError('required')\">\n            Email is required.\n          </div></clr-control-error\n        >\n      </clr-input-container>\n      <clr-password-container>\n        <input\n          type=\"password\"\n          name=\"password\"\n          formControlName=\"password\"\n          clrPassword\n          placeholder=\"Password\"\n        />\n        <clr-control-error>\n          <div *ngIf=\"password.hasError('required')\">\n            Password is required.\n          </div>\n          <div *ngIf=\"password.hasError('minlength')\">\n            Password must be at least 8 characters long.\n          </div></clr-control-error\n        >\n      </clr-password-container>\n      <div *ngIf=\"invalidCredentials\" class=\"error active\">\n        Invalid user name or password\n      </div>\n      <button\n        type=\"submit\"\n        class=\"btn btn-primary\"\n        [disabled]=\"loginForm.invalid\"\n      >\n        Login\n      </button>\n    </div>\n    <div>\n      <div>Vous n'avez pas de compte ?</div>\n      <a routerLink=\"/account/register\" class=\"btn\">\n        Sign up\n      </a>\n    </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -767,7 +767,7 @@ module.exports = "<div class=\"login-wrapper\">\n  <form [formGroup]=\"loginForm
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2NvbnRhaW5lcnMvbG9naW4vbG9naW4uY29tcG9uZW50LnNjc3MifQ== */"
+module.exports = "a {\n  display: block; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vY29udGFpbmVycy9sb2dpbi9DOlxcZGV2XFxnaXZlbWVcXGNsaWVudC9zcmNcXGFwcFxcbG9naW5cXGNvbnRhaW5lcnNcXGxvZ2luXFxsb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGNBQWMsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2NvbnRhaW5lcnMvbG9naW4vbG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJhIHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -815,10 +815,8 @@ var LoginComponent = /** @class */ (function () {
         this.config = config;
         this.logger = logger;
         this.destroy$ = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.loginForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
-        });
+        this.invalidCredentials = false;
+        this.createForm();
     }
     LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.onLogin = function () {
@@ -831,12 +829,36 @@ var LoginComponent = /** @class */ (function () {
             _this.router.navigate(_this.config.getPostLoginDefaultRoute());
         }, function (err) {
             /*this.messageService.add({ severity: 'error', summary: 'Login error' }*/
-            return _this.logger.error(err);
+            _this.invalidCredentials = true;
+            _this.logger.error(JSON.stringify(err));
         });
     };
     LoginComponent.prototype.ngOnDestroy = function () {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
+    };
+    Object.defineProperty(LoginComponent.prototype, "email", {
+        get: function () {
+            return this.loginForm.get('email');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LoginComponent.prototype, "password", {
+        get: function () {
+            return this.loginForm.get('password');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    LoginComponent.prototype.createForm = function () {
+        this.loginForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(8),
+            ]),
+        });
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

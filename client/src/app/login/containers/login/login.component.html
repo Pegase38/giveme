@@ -12,6 +12,11 @@
           clrInput
           placeholder="Email"
         />
+        <clr-control-error>
+          <div *ngIf="email.hasError('required')">
+            Email is required.
+          </div></clr-control-error
+        >
       </clr-input-container>
       <clr-password-container>
         <input
@@ -21,11 +26,31 @@
           clrPassword
           placeholder="Password"
         />
+        <clr-control-error>
+          <div *ngIf="password.hasError('required')">
+            Password is required.
+          </div>
+          <div *ngIf="password.hasError('minlength')">
+            Password must be at least 8 characters long.
+          </div></clr-control-error
+        >
       </clr-password-container>
-      <div class="error active">
+      <div *ngIf="invalidCredentials" class="error active">
         Invalid user name or password
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+    </div>
+    <div>
+      <div>Vous n'avez pas de compte ?</div>
+      <a routerLink="/account/register" class="btn">
+        Sign up
+      </a>
     </div>
   </form>
 </div>

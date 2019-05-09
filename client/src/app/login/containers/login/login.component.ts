@@ -1,6 +1,6 @@
 import { LoggerService } from './../../../core/logger/services/logger.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -17,16 +17,15 @@ import { takeUntil } from 'rxjs/operators';
 export class LoginComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   loginForm: FormGroup;
+  invalidCredentials = false;
+
   constructor(
     private auth: AuthService,
     private router: Router,
     private config: ConfigService,
     private logger: LoggerService
   ) {
-    this.loginForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl(),
-    });
+    this.createForm();
   }
 
   ngOnInit() {}
@@ -40,14 +39,34 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.logger.info('Login success!');
           this.router.navigate(this.config.getPostLoginDefaultRoute());
         },
-        err =>
+        err => {
           /*this.messageService.add({ severity: 'error', summary: 'Login error' }*/
-          this.logger.error(err)
+          this.invalidCredentials = true;
+          this.logger.error(JSON.stringify(err));
+        }
       );
   }
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  private createForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+    });
   }
 }
