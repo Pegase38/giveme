@@ -1,5 +1,5 @@
 import { UsersService } from './../../services/users.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -31,17 +31,22 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .subscribe(user => {
         this.editProfileForm = new FormGroup({
           id: new FormControl(user.id),
-          email: new FormControl(user.email),
-          username: new FormControl(user.username),
+          email: new FormControl(user.email, [
+            Validators.required,
+            Validators.email,
+          ]),
+          username: new FormControl(user.username, [Validators.required]),
         });
         this.user = user;
       });
   }
 
   onEditProfile() {
-    this.userService.updateUser(this.editProfileForm.value).subscribe(() => {
-      this.router.navigate(['account']);
-    });
+    if (this.editProfileForm.valid) {
+      this.userService.updateUser(this.editProfileForm.value).subscribe(() => {
+        this.router.navigate(['account']);
+      });
+    }
   }
 
   onCancel() {

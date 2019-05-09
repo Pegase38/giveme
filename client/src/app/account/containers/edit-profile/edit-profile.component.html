@@ -13,6 +13,11 @@
         name="Username"
         id="username"
       />
+      <clr-control-error>
+        <div *clrIfError="'required'">
+          Username is required.
+        </div></clr-control-error
+      >
     </clr-input-container>
     <clr-input-container>
       <label>Email</label>
@@ -23,8 +28,22 @@
         name="Email"
         id="email"
       />
+      <clr-control-error>
+        <div *clrIfError="'required'">
+          Email is required.
+        </div>
+        <div *clrIfError="'email'">
+          Incorrect Email.
+        </div></clr-control-error
+      >
     </clr-input-container>
-    <button class="btn btn-primary" type="submit">Save changes</button>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="editProfileForm.invalid"
+    >
+      Save changes
+    </button>
     <button class="btn" type="button" (click)="onCancel()">Cancel</button>
   </form>
 </ng-container>

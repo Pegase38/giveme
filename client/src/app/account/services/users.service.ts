@@ -1,12 +1,15 @@
-import { AuthService } from './../../core/auth/services/auth.service';
-import { ConfigService } from 'src/app/core/config/config.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { switchMap, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { switchMap, map, tap } from 'rxjs/operators';
+
+import { AuthService } from './../../core/auth/services/auth.service';
+import { ConfigService } from 'src/app/core/config/config.service';
+import { LoggerService } from 'src/app/core/logger/services/logger.service';
+import { SessionService } from 'src/app/core/auth/services/session.service';
 
 import { User } from 'src/app/shared/models/auth/user';
 import { UserResponse } from 'src/app/shared/models/auth/user-response';
-import { SessionService } from 'src/app/core/auth/services/session.service';
 import { Credential } from 'src/app/shared/models/auth/credential';
 
 @Injectable({
@@ -17,7 +20,9 @@ export class UsersService {
     private http: HttpClient,
     private session: SessionService,
     private auth: AuthService,
-    private config: ConfigService
+    private config: ConfigService,
+    private logger: LoggerService,
+    private router: Router
   ) {}
 
   /**
@@ -36,6 +41,11 @@ export class UsersService {
     }
   }
 
+  /**
+   * Récupère les informations courantes de l'utilisateur
+   * puis patch le password.
+   * @param info les informations de modification de password (id:userid)
+   */
   updateUserPassword(info: {
     id: number;
     newPassword: string;
@@ -56,20 +66,24 @@ export class UsersService {
     );
   }
 
-  addUser(user: User) {
+  /**
+   * créer l'utilisateur puis s'authentifie.
+   * L'utilisateur est ensuite redirigé sur la page post login.
+   */
+  register(user: User) {
     if (user.password !== user.confirmedPassword) {
       throw new Error('Passwords missmatched');
     }
     delete user.confirmedPassword;
-    return this.http
-      .post(this.getResourceBaseUrl(), user)
-      .pipe(
-        switchMap(() =>
-          this.auth.signIn(
-            new Credential({ email: user.email, password: user.password })
-          )
+    return this.http.post(this.getResourceBaseUrl(), user).pipe(
+      switchMap(() =>
+        this.auth.signIn(
+          new Credential({ email: user.email, password: user.password })
         )
-      );
+      ),
+      tap(() => this.logger.info('Register and login success!')),
+      map(() => this.router.navigate(this.config.getPostLoginDefaultRoute()))
+    );
   }
 
   private getResourceBaseUrl() {

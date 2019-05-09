@@ -11,6 +11,11 @@
       name="Username"
       id="username"
     />
+    <clr-control-error>
+      <div *clrIfError="'required'">
+        Username is required.
+      </div></clr-control-error
+    >
   </clr-input-container>
   <clr-input-container>
     <label>Email</label>
@@ -21,6 +26,14 @@
       name="Email"
       id="email"
     />
+    <clr-control-error>
+      <div *clrIfError="'required'">
+        Email is required.
+      </div>
+      <div *clrIfError="'email'">
+        Incorrect Email.
+      </div></clr-control-error
+    >
   </clr-input-container>
   <clr-password-container>
     <label>Password</label>
@@ -31,6 +44,14 @@
       name="password"
       id="password"
     />
+    <clr-control-error>
+      <div *clrIfError="'required'">
+        Password is required.
+      </div>
+      <div *clrIfError="'minlength'">
+        Password must be at least 8 characters long.
+      </div></clr-control-error
+    >
   </clr-password-container>
   <clr-password-container>
     <label>Confirm password</label>
@@ -41,8 +62,18 @@
       name="confirmedPassword"
       id="confirmedPassword"
     />
+    <clr-control-error>
+      <div *clrIfError="'required'">
+        Confirmed password is required.
+      </div>
+      <div *clrIfError="'match'">
+        Passwords must match.
+      </div></clr-control-error
+    >
   </clr-password-container>
-  <button class="btn btn-primary" type="submit">Create account</button>
+  <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid">
+    Create account
+  </button>
 </form>
 <div>
   Have an account? <a routerLink="/login" routerLinkActive="active">Sign in</a>

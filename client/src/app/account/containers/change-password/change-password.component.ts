@@ -1,11 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from '../../services/users.service';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SessionService } from 'src/app/core/auth/services/session.service';
+
+import { UsersService } from '../../services/users.service';
+import { SessionService } from '../../../core/auth/services/session.service';
 import { User } from 'src/app/shared/models/auth/user';
+import { MatchValidator } from 'src/app/shared/validators/match.validator';
 
 @Component({
   selector: 'app-change-password',
@@ -18,6 +25,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   changePasswordForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private session: SessionService,
     private router: Router,
     private userService: UsersService
@@ -28,11 +36,16 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       .getUser()
       .pipe(takeUntil(this.destroy$))
       .subscribe(user => {
-        this.changePasswordForm = new FormGroup({
-          id: new FormControl(user.id),
-          newPassword: new FormControl(),
-          confirmedPassword: new FormControl(),
-        });
+        this.changePasswordForm = this.fb.group(
+          {
+            id: user.id,
+            newPassword: ['', [Validators.required, Validators.minLength(8)]],
+            confirmedPassword: ['', [Validators.required]],
+          },
+          {
+            validator: MatchValidator('newPassword', 'confirmedPassword'),
+          }
+        );
         this.user = user;
       });
   }

@@ -73,7 +73,6 @@ export class SessionService {
   }
 
   updateUser(userData: User) {
-    console.log(userData);
     const state = Object.assign(
       new SessionState(),
       this.sessionState$.getValue(),

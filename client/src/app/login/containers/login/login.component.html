@@ -13,8 +13,11 @@
           placeholder="Email"
         />
         <clr-control-error>
-          <div *ngIf="email.hasError('required')">
+          <div *clrIfError="'required'">
             Email is required.
+          </div>
+          <div *clrIfError="'email'">
+            Incorrect Email.
           </div></clr-control-error
         >
       </clr-input-container>
@@ -27,10 +30,10 @@
           placeholder="Password"
         />
         <clr-control-error>
-          <div *ngIf="password.hasError('required')">
+          <div *clrIfError="'required'">
             Password is required.
           </div>
-          <div *ngIf="password.hasError('minlength')">
+          <div *clrIfError="'minlength'">
             Password must be at least 8 characters long.
           </div></clr-control-error
         >
