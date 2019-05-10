@@ -25,7 +25,7 @@ export class AddAnnoncesComponent implements OnInit {
       category: ['', [Validators.required]],
       type: ['', [Validators.required]],
       //photos: '',
-      city: '',
+      city: ['', [Validators.required]],
     });
   }
 
