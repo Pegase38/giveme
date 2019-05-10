@@ -18,6 +18,9 @@ export class Annonce implements AnnonceInterface {
 
   constructor(fields?: Partial<Annonce> & Pick<Annonce, 'id'>) {
     if (fields) {
+      if (fields.type) {
+        fields.type = parseInt(fields.type.toString());
+      }
       Object.assign(this, fields);
     }
   }

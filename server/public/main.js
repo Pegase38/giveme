@@ -1081,7 +1081,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  footer works!\r\n</p>\r\n"
+module.exports = ""
 
 /***/ }),
 

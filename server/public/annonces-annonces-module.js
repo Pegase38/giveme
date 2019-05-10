@@ -123,7 +123,7 @@ var AnnoncesModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n  <div class=\"card-header\">\r\n    {{ offre.title }}\r\n  </div>\r\n  <div class=\"card-img\">\r\n    <img\r\n      src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\r\n      [alt]=\"offre.title\"\r\n    />\r\n  </div>\r\n  <div class=\"card-block\">\r\n    <div class=\"card-title\">{{ offre.category }}</div>\r\n    <div class=\"card-text\">\r\n      <p>{{ offre.city }}</p>\r\n      <p>{{ offre.creationDate }}</p>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-footer\">\r\n    <button (click)=\"onClickView(offre.id)\" mat-button>En savoir plus</button>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"card-header\">\r\n    {{ offre.title }}\r\n  </div>\r\n  <div class=\"card-img\">\r\n    <img\r\n      src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\r\n      [alt]=\"offre.title\"\r\n    />\r\n  </div>\r\n  <div class=\"card-block\">\r\n    <div class=\"card-title\">{{ offre.category }}</div>\r\n    <div class=\"card-text\">\r\n      <div>{{ offre.city }}</div>\r\n      <div>{{ offre.creationDate | date }}</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-footer\">\r\n    <button (click)=\"onClickView(offre.id)\" mat-button>En savoir plus</button>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -199,7 +199,7 @@ var OffreComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"clr-row\">\r\n  <div class=\"clr-col-12\"><h1>Déposer une annonce</h1></div>\r\n</div>\r\n<div class=\"clr-row\">\r\n  formulaire création annonce\r\n</div>\r\n"
+module.exports = "<div class=\"clr-row\">\r\n  <div class=\"clr-col-12\"><h1>Déposer une annonce</h1></div>\r\n</div>\r\n\r\n<form [formGroup]=\"addAnnonceForm\" (ngSubmit)=\"onAdd()\" clrForm>\r\n  <clr-select-container>\r\n    <label>Category</label>\r\n    <select clrSelect name=\"category\" formControlName=\"category\">\r\n      <option value=\"Book\">Book</option>\r\n      <option value=\"Other\">Other</option>\r\n    </select>\r\n    <clr-control-error>\r\n      <div *clrIfError=\"'required'\">\r\n        Category is required.\r\n      </div></clr-control-error\r\n    >\r\n  </clr-select-container>\r\n  <clr-radio-container>\r\n    <label>Type</label>\r\n    <clr-radio-wrapper>\r\n      <input\r\n        type=\"radio\"\r\n        clrRadio\r\n        name=\"type\"\r\n        formControlName=\"type\"\r\n        value=\"1\"\r\n      />\r\n      <label>Offre</label>\r\n    </clr-radio-wrapper>\r\n    <clr-radio-wrapper>\r\n      <input\r\n        type=\"radio\"\r\n        clrRadio\r\n        name=\"type\"\r\n        formControlName=\"type\"\r\n        value=\"2\"\r\n      />\r\n      <label>Demande</label>\r\n    </clr-radio-wrapper>\r\n    <clr-control-error>\r\n      <div *clrIfError=\"'required'\">\r\n        Type is required.\r\n      </div></clr-control-error\r\n    >\r\n  </clr-radio-container>\r\n  <clr-input-container>\r\n    <label>Title</label>\r\n    <input\r\n      clrInput\r\n      type=\"text\"\r\n      formControlName=\"title\"\r\n      name=\"Title\"\r\n      id=\"title\"\r\n    />\r\n    <clr-control-error>\r\n      <div *clrIfError=\"'required'\">\r\n        Title is required.\r\n      </div></clr-control-error\r\n    >\r\n  </clr-input-container>\r\n  <clr-textarea-container>\r\n    <label>Description</label>\r\n    <textarea\r\n      clrTextarea\r\n      type=\"text\"\r\n      formControlName=\"description\"\r\n      name=\"Description\"\r\n      id=\"description\"\r\n    ></textarea>\r\n    <clr-control-error>\r\n      <div *clrIfError=\"'required'\">\r\n        Description is required.\r\n      </div></clr-control-error\r\n    ></clr-textarea-container\r\n  >\r\n  <clr-select-container>\r\n    <label>City</label>\r\n    <select clrSelect name=\"city\" formControlName=\"city\">\r\n      <option value=\"Grenoble\">Grenoble</option>\r\n      <option value=\"Aubenas\">Aubenas</option>\r\n    </select>\r\n  </clr-select-container>\r\n  <button\r\n    class=\"btn btn-primary\"\r\n    type=\"submit\"\r\n    [disabled]=\"addAnnonceForm.invalid\"\r\n  >\r\n    Add annonce\r\n  </button>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -225,6 +225,10 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddAnnoncesComponent", function() { return AddAnnoncesComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _services_annonce_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/annonce.service */ "./src/app/annonces/services/annonce.service.ts");
+/* harmony import */ var src_app_shared_models_annonce__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/models/annonce */ "./src/app/shared/models/annonce.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -235,17 +239,43 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
 var AddAnnoncesComponent = /** @class */ (function () {
-    function AddAnnoncesComponent() {
+    function AddAnnoncesComponent(formBuilder, router, annonceService) {
+        this.formBuilder = formBuilder;
+        this.router = router;
+        this.annonceService = annonceService;
     }
-    AddAnnoncesComponent.prototype.ngOnInit = function () { };
+    AddAnnoncesComponent.prototype.ngOnInit = function () {
+        this.addAnnonceForm = this.formBuilder.group({
+            title: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+            description: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+            category: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+            type: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+            //photos: '',
+            city: '',
+        });
+    };
+    AddAnnoncesComponent.prototype.onAdd = function () {
+        var _this = this;
+        this.annonceService
+            .add(new src_app_shared_models_annonce__WEBPACK_IMPORTED_MODULE_3__["Annonce"](this.addAnnonceForm.value))
+            .subscribe(function (response) {
+            return _this.router.navigate(['annonces', 'details', response.id]);
+        });
+    };
     AddAnnoncesComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-add-annonces',
             template: __webpack_require__(/*! ./add-annonces.component.html */ "./src/app/annonces/containers/add-annonces/add-annonces.component.html"),
             styles: [__webpack_require__(/*! ./add-annonces.component.scss */ "./src/app/annonces/containers/add-annonces/add-annonces.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _services_annonce_service__WEBPACK_IMPORTED_MODULE_2__["AnnonceService"]])
     ], AddAnnoncesComponent);
     return AddAnnoncesComponent;
 }());
@@ -540,6 +570,9 @@ var Annonce = /** @class */ (function () {
         this.type = _enum_annonce_type_enum__WEBPACK_IMPORTED_MODULE_2__["AnnonceType"].OFFRE;
         this.creationDate = new Date().toISOString();
         if (fields) {
+            if (fields.type) {
+                fields.type = parseInt(fields.type.toString());
+            }
             Object.assign(this, fields);
         }
     }

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Annonce } from 'src/app/shared/models/annonce';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +20,9 @@ export class AnnonceService {
     return this.http.get<Annonce>(`${this.getResourceBaseUrl()}/${id}`);
   }
 
-  add(annonce: Annonce) {
+  add(annonce: Annonce): Observable<Annonce> {
     if (annonce) {
-      return this.http.post(this.getResourceBaseUrl(), annonce);
+      return this.http.post<Annonce>(this.getResourceBaseUrl(), annonce);
     }
   }
 

@@ -1,6 +1,90 @@
 <div class="clr-row">
   <div class="clr-col-12"><h1>Déposer une annonce</h1></div>
 </div>
-<div class="clr-row">
-  formulaire création annonce
-</div>
+
+<form [formGroup]="addAnnonceForm" (ngSubmit)="onAdd()" clrForm>
+  <clr-select-container>
+    <label>Category</label>
+    <select clrSelect name="category" formControlName="category">
+      <option value="Book">Book</option>
+      <option value="Other">Other</option>
+    </select>
+    <clr-control-error>
+      <div *clrIfError="'required'">
+        Category is required.
+      </div></clr-control-error
+    >
+  </clr-select-container>
+  <clr-radio-container>
+    <label>Type</label>
+    <clr-radio-wrapper>
+      <input
+        type="radio"
+        clrRadio
+        name="type"
+        formControlName="type"
+        value="1"
+      />
+      <label>Offre</label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+      <input
+        type="radio"
+        clrRadio
+        name="type"
+        formControlName="type"
+        value="2"
+      />
+      <label>Demande</label>
+    </clr-radio-wrapper>
+    <clr-control-error>
+      <div *clrIfError="'required'">
+        Type is required.
+      </div></clr-control-error
+    >
+  </clr-radio-container>
+  <clr-input-container>
+    <label>Title</label>
+    <input
+      clrInput
+      type="text"
+      formControlName="title"
+      name="Title"
+      id="title"
+    />
+    <clr-control-error>
+      <div *clrIfError="'required'">
+        Title is required.
+      </div></clr-control-error
+    >
+  </clr-input-container>
+  <clr-textarea-container>
+    <label>Description</label>
+    <textarea
+      clrTextarea
+      type="text"
+      formControlName="description"
+      name="Description"
+      id="description"
+    ></textarea>
+    <clr-control-error>
+      <div *clrIfError="'required'">
+        Description is required.
+      </div></clr-control-error
+    ></clr-textarea-container
+  >
+  <clr-select-container>
+    <label>City</label>
+    <select clrSelect name="city" formControlName="city">
+      <option value="Grenoble">Grenoble</option>
+      <option value="Aubenas">Aubenas</option>
+    </select>
+  </clr-select-container>
+  <button
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="addAnnonceForm.invalid"
+  >
+    Add annonce
+  </button>
+</form>

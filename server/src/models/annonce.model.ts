@@ -43,18 +43,19 @@ export class Annonce extends Entity {
 
   @property({
     type: 'string',
+    required: true,
   })
-  adress?: string;
+  city: string;
 
   @property({
     type: 'string',
   })
-  city?: string;
+  adress?: string;
 
   @property({
     type: 'date',
   })
-  createdDate?: string;
+  creationDate?: string;
 
   constructor(data?: Partial<Annonce>) {
     super(data);
