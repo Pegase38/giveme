@@ -15,6 +15,10 @@ export class AnnonceService {
     return this.http.get<Annonce[]>(this.getResourceBaseUrl());
   }
 
+  getAnnonce(id: number): Observable<Annonce> {
+    return this.http.get<Annonce>(`${this.getResourceBaseUrl()}/${id}`);
+  }
+
   add(annonce: Annonce) {
     if (annonce) {
       return this.http.post(this.getResourceBaseUrl(), annonce);

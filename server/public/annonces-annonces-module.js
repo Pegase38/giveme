@@ -12,15 +12,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnoncesRoutingModule", function() { return AnnoncesRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./containers/offres/offres.component */ "./src/app/annonces/containers/offres/offres.component.ts");
-/* harmony import */ var _containers_add_annonce_add_annonce_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/add-annonce/add-annonce.component */ "./src/app/annonces/containers/add-annonce/add-annonce.component.ts");
-/* harmony import */ var _core_auth_guards_is_user_signed_in_guard_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/auth/guards/is-user-signed-in-guard.guard */ "./src/app/core/auth/guards/is-user-signed-in-guard.guard.ts");
+/* harmony import */ var _core_auth_guards_is_user_signed_in_guard_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/auth/guards/is-user-signed-in-guard.guard */ "./src/app/core/auth/guards/is-user-signed-in-guard.guard.ts");
+/* harmony import */ var _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/offres/offres.component */ "./src/app/annonces/containers/offres/offres.component.ts");
+/* harmony import */ var _containers_add_annonces_add_annonces_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./containers/add-annonces/add-annonces.component */ "./src/app/annonces/containers/add-annonces/add-annonces.component.ts");
+/* harmony import */ var _containers_details_annonces_details_annonces_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./containers/details-annonces/details-annonces.component */ "./src/app/annonces/containers/details-annonces/details-annonces.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -34,12 +36,16 @@ var routes = [
     },
     {
         path: 'offres',
-        component: _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_2__["OffresComponent"],
+        component: _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__["OffresComponent"],
+    },
+    {
+        path: 'details/:id',
+        component: _containers_details_annonces_details_annonces_component__WEBPACK_IMPORTED_MODULE_5__["DetailsAnnoncesComponent"],
     },
     {
         path: 'add-annonce',
-        canActivate: [_core_auth_guards_is_user_signed_in_guard_guard__WEBPACK_IMPORTED_MODULE_4__["IsUserSignedInGuardGuard"]],
-        component: _containers_add_annonce_add_annonce_component__WEBPACK_IMPORTED_MODULE_3__["AddAnnonceComponent"],
+        canActivate: [_core_auth_guards_is_user_signed_in_guard_guard__WEBPACK_IMPORTED_MODULE_2__["IsUserSignedInGuardGuard"]],
+        component: _containers_add_annonces_add_annonces_component__WEBPACK_IMPORTED_MODULE_4__["AddAnnoncesComponent"],
     },
 ];
 var AnnoncesRoutingModule = /** @class */ (function () {
@@ -73,7 +79,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/offres/offres.component */ "./src/app/annonces/containers/offres/offres.component.ts");
 /* harmony import */ var _components_offre_offre_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/offre/offre.component */ "./src/app/annonces/components/offre/offre.component.ts");
-/* harmony import */ var _containers_add_annonce_add_annonce_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./containers/add-annonce/add-annonce.component */ "./src/app/annonces/containers/add-annonce/add-annonce.component.ts");
+/* harmony import */ var _containers_add_annonces_add_annonces_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./containers/add-annonces/add-annonces.component */ "./src/app/annonces/containers/add-annonces/add-annonces.component.ts");
+/* harmony import */ var _containers_details_annonces_details_annonces_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./containers/details-annonces/details-annonces.component */ "./src/app/annonces/containers/details-annonces/details-annonces.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -86,12 +93,19 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AnnoncesModule = /** @class */ (function () {
     function AnnoncesModule() {
     }
     AnnoncesModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            declarations: [_containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__["OffresComponent"], _components_offre_offre_component__WEBPACK_IMPORTED_MODULE_4__["OffreComponent"], _containers_add_annonce_add_annonce_component__WEBPACK_IMPORTED_MODULE_5__["AddAnnonceComponent"]],
+            declarations: [
+                _containers_offres_offres_component__WEBPACK_IMPORTED_MODULE_3__["OffresComponent"],
+                _components_offre_offre_component__WEBPACK_IMPORTED_MODULE_4__["OffreComponent"],
+                _containers_add_annonces_add_annonces_component__WEBPACK_IMPORTED_MODULE_5__["AddAnnoncesComponent"],
+                _containers_details_annonces_details_annonces_component__WEBPACK_IMPORTED_MODULE_6__["DetailsAnnoncesComponent"],
+                _containers_details_annonces_details_annonces_component__WEBPACK_IMPORTED_MODULE_6__["DetailsAnnoncesComponent"],
+            ],
             imports: [_shared_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"], _annonces_routing_module__WEBPACK_IMPORTED_MODULE_1__["AnnoncesRoutingModule"]],
         })
     ], AnnoncesModule);
@@ -109,7 +123,7 @@ var AnnoncesModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    {{ offre.title }}\n  </div>\n  <div class=\"card-img\">\n    <img\n      src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\n      [alt]=\"offre.title\"\n    />\n  </div>\n  <div class=\"card-block\">\n    <div class=\"card-title\">{{ offre.category }}</div>\n    <div class=\"card-text\">\n      <p>{{ offre.city }}</p>\n      <p>{{ offre.creationDate }}</p>\n    </div>\n  </div>\n  <div class=\"card-footer\">\n    <button mat-button>En savoir plus</button>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"card-header\">\r\n    {{ offre.title }}\r\n  </div>\r\n  <div class=\"card-img\">\r\n    <img\r\n      src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\r\n      [alt]=\"offre.title\"\r\n    />\r\n  </div>\r\n  <div class=\"card-block\">\r\n    <div class=\"card-title\">{{ offre.category }}</div>\r\n    <div class=\"card-text\">\r\n      <p>{{ offre.city }}</p>\r\n      <p>{{ offre.creationDate }}</p>\r\n    </div>\r\n  </div>\r\n  <div class=\"card-footer\">\r\n    <button (click)=\"onClickView(offre.id)\" mat-button>En savoir plus</button>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -149,12 +163,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var OffreComponent = /** @class */ (function () {
     function OffreComponent() {
+        this.viewDetails = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     OffreComponent.prototype.ngOnInit = function () { };
+    OffreComponent.prototype.onClickView = function (offreId) {
+        this.viewDetails.emit(offreId);
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", src_app_shared_models_annonce__WEBPACK_IMPORTED_MODULE_1__["Annonce"])
     ], OffreComponent.prototype, "offre", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+    ], OffreComponent.prototype, "viewDetails", void 0);
     OffreComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-offre',
@@ -170,38 +192,38 @@ var OffreComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/annonces/containers/add-annonce/add-annonce.component.html":
-/*!****************************************************************************!*\
-  !*** ./src/app/annonces/containers/add-annonce/add-annonce.component.html ***!
-  \****************************************************************************/
+/***/ "./src/app/annonces/containers/add-annonces/add-annonces.component.html":
+/*!******************************************************************************!*\
+  !*** ./src/app/annonces/containers/add-annonces/add-annonces.component.html ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  add-annonce works!\n</p>\n"
+module.exports = "<div class=\"clr-row\">\r\n  <div class=\"clr-col-12\"><h1>Déposer une annonce</h1></div>\r\n</div>\r\n<div class=\"clr-row\">\r\n  formulaire création annonce\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ "./src/app/annonces/containers/add-annonce/add-annonce.component.scss":
-/*!****************************************************************************!*\
-  !*** ./src/app/annonces/containers/add-annonce/add-annonce.component.scss ***!
-  \****************************************************************************/
+/***/ "./src/app/annonces/containers/add-annonces/add-annonces.component.scss":
+/*!******************************************************************************!*\
+  !*** ./src/app/annonces/containers/add-annonces/add-annonces.component.scss ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Fubm9uY2VzL2NvbnRhaW5lcnMvYWRkLWFubm9uY2UvYWRkLWFubm9uY2UuY29tcG9uZW50LnNjc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Fubm9uY2VzL2NvbnRhaW5lcnMvYWRkLWFubm9uY2VzL2FkZC1hbm5vbmNlcy5jb21wb25lbnQuc2NzcyJ9 */"
 
 /***/ }),
 
-/***/ "./src/app/annonces/containers/add-annonce/add-annonce.component.ts":
-/*!**************************************************************************!*\
-  !*** ./src/app/annonces/containers/add-annonce/add-annonce.component.ts ***!
-  \**************************************************************************/
-/*! exports provided: AddAnnonceComponent */
+/***/ "./src/app/annonces/containers/add-annonces/add-annonces.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/annonces/containers/add-annonces/add-annonces.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: AddAnnoncesComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddAnnonceComponent", function() { return AddAnnonceComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddAnnoncesComponent", function() { return AddAnnoncesComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -213,20 +235,93 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AddAnnonceComponent = /** @class */ (function () {
-    function AddAnnonceComponent() {
+var AddAnnoncesComponent = /** @class */ (function () {
+    function AddAnnoncesComponent() {
     }
-    AddAnnonceComponent.prototype.ngOnInit = function () {
-    };
-    AddAnnonceComponent = __decorate([
+    AddAnnoncesComponent.prototype.ngOnInit = function () { };
+    AddAnnoncesComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-add-annonce',
-            template: __webpack_require__(/*! ./add-annonce.component.html */ "./src/app/annonces/containers/add-annonce/add-annonce.component.html"),
-            styles: [__webpack_require__(/*! ./add-annonce.component.scss */ "./src/app/annonces/containers/add-annonce/add-annonce.component.scss")]
+            selector: 'app-add-annonces',
+            template: __webpack_require__(/*! ./add-annonces.component.html */ "./src/app/annonces/containers/add-annonces/add-annonces.component.html"),
+            styles: [__webpack_require__(/*! ./add-annonces.component.scss */ "./src/app/annonces/containers/add-annonces/add-annonces.component.scss")]
         }),
         __metadata("design:paramtypes", [])
-    ], AddAnnonceComponent);
-    return AddAnnonceComponent;
+    ], AddAnnoncesComponent);
+    return AddAnnoncesComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/annonces/containers/details-annonces/details-annonces.component.html":
+/*!**************************************************************************************!*\
+  !*** ./src/app/annonces/containers/details-annonces/details-annonces.component.html ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-container *ngIf=\"annonce$ | async as annonce\">\n  <img\n    src=\"https://material.angular.io/assets/img/examples/shiba2.jpg\"\n    [alt]=\"annonce.title\"\n  />\n  <h2>{{ annonce.title }}</h2>\n  <span>{{ annonce.createdDate }}</span>\n  <p>\n    {{ annonce.description }}\n  </p>\n  <p>\n    {{ annonce.city }}\n  </p>\n</ng-container>\n"
+
+/***/ }),
+
+/***/ "./src/app/annonces/containers/details-annonces/details-annonces.component.scss":
+/*!**************************************************************************************!*\
+  !*** ./src/app/annonces/containers/details-annonces/details-annonces.component.scss ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Fubm9uY2VzL2NvbnRhaW5lcnMvZGV0YWlscy1hbm5vbmNlcy9kZXRhaWxzLWFubm9uY2VzLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/annonces/containers/details-annonces/details-annonces.component.ts":
+/*!************************************************************************************!*\
+  !*** ./src/app/annonces/containers/details-annonces/details-annonces.component.ts ***!
+  \************************************************************************************/
+/*! exports provided: DetailsAnnoncesComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetailsAnnoncesComponent", function() { return DetailsAnnoncesComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_annonce_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/annonce.service */ "./src/app/annonces/services/annonce.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var DetailsAnnoncesComponent = /** @class */ (function () {
+    function DetailsAnnoncesComponent(annonceService, activatedRoute) {
+        this.annonceService = annonceService;
+        this.activatedRoute = activatedRoute;
+    }
+    DetailsAnnoncesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.annonce$ = this.activatedRoute.params.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (params) { return params.id; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (id) { return _this.annonceService.getAnnonce(id); }));
+    };
+    DetailsAnnoncesComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-details-annonces',
+            template: __webpack_require__(/*! ./details-annonces.component.html */ "./src/app/annonces/containers/details-annonces/details-annonces.component.html"),
+            styles: [__webpack_require__(/*! ./details-annonces.component.scss */ "./src/app/annonces/containers/details-annonces/details-annonces.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_services_annonce_service__WEBPACK_IMPORTED_MODULE_1__["AnnonceService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+    ], DetailsAnnoncesComponent);
+    return DetailsAnnoncesComponent;
 }());
 
 
@@ -240,7 +335,7 @@ var AddAnnonceComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"clr-row\">\n  <ng-container *ngFor=\"let offre of offres$ | async\">\n    <div class=\"clr-col-sm-12 clr-col-lg-4\">\n      <app-offre [offre]=\"offre\"></app-offre>\n    </div>\n  </ng-container>\n</div>\n"
+module.exports = "<div class=\"clr-row\">\r\n  <div class=\"clr-col-12\"><h1>Toutes les offres</h1></div>\r\n</div>\r\n<div class=\"clr-row\">\r\n  <ng-container *ngFor=\"let offre of offres$ | async\">\r\n    <div class=\"clr-col-sm-12 clr-col-lg-4\">\r\n      <app-offre\r\n        [offre]=\"offre\"\r\n        (viewDetails)=\"onViewDetails($event)\"\r\n      ></app-offre>\r\n    </div>\r\n  </ng-container>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -267,6 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OffresComponent", function() { return OffresComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_annonce_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../services/annonce.service */ "./src/app/annonces/services/annonce.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -278,19 +374,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var OffresComponent = /** @class */ (function () {
-    function OffresComponent(annonceService) {
+    function OffresComponent(annonceService, router) {
         this.annonceService = annonceService;
+        this.router = router;
         this.offres$ = this.annonceService.getAnnonces();
     }
     OffresComponent.prototype.ngOnInit = function () { };
+    OffresComponent.prototype.onViewDetails = function ($event) {
+        console.log($event);
+        this.router.navigate(['annonces', 'details', $event]);
+    };
     OffresComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-offres',
             template: __webpack_require__(/*! ./offres.component.html */ "./src/app/annonces/containers/offres/offres.component.html"),
             styles: [__webpack_require__(/*! ./offres.component.scss */ "./src/app/annonces/containers/offres/offres.component.scss")]
         }),
-        __metadata("design:paramtypes", [_services_annonce_service__WEBPACK_IMPORTED_MODULE_1__["AnnonceService"]])
+        __metadata("design:paramtypes", [_services_annonce_service__WEBPACK_IMPORTED_MODULE_1__["AnnonceService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], OffresComponent);
     return OffresComponent;
 }());
@@ -331,6 +433,9 @@ var AnnonceService = /** @class */ (function () {
     }
     AnnonceService.prototype.getAnnonces = function () {
         return this.http.get(this.getResourceBaseUrl());
+    };
+    AnnonceService.prototype.getAnnonce = function (id) {
+        return this.http.get(this.getResourceBaseUrl() + "/" + id);
     };
     AnnonceService.prototype.add = function (annonce) {
         if (annonce) {

@@ -1,0 +1,14 @@
+<ng-container *ngIf="annonce$ | async as annonce">
+  <img
+    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    [alt]="annonce.title"
+  />
+  <h2>{{ annonce.title }}</h2>
+  <span>{{ annonce.createdDate }}</span>
+  <p>
+    {{ annonce.description }}
+  </p>
+  <p>
+    {{ annonce.city }}
+  </p>
+</ng-container>

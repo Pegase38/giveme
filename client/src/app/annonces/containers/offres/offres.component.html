@@ -1,7 +1,13 @@
 <div class="clr-row">
+  <div class="clr-col-12"><h1>Toutes les offres</h1></div>
+</div>
+<div class="clr-row">
   <ng-container *ngFor="let offre of offres$ | async">
     <div class="clr-col-sm-12 clr-col-lg-4">
-      <app-offre [offre]="offre"></app-offre>
+      <app-offre
+        [offre]="offre"
+        (viewDetails)="onViewDetails($event)"
+      ></app-offre>
     </div>
   </ng-container>
 </div>

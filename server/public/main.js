@@ -99,7 +99,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-user-interface></app-user-interface>\n"
+module.exports = "<app-user-interface></app-user-interface>\r\n"
 
 /***/ }),
 
@@ -755,7 +755,7 @@ var LoggerService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-wrapper\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin()\" class=\"login\">\n    <section class=\"title\">\n      <h3 class=\"welcome\">Login page</h3>\n    </section>\n    <div class=\"login-group\">\n      <clr-input-container>\n        <input\n          type=\"text\"\n          name=\"email\"\n          formControlName=\"email\"\n          clrInput\n          placeholder=\"Email\"\n        />\n        <clr-control-error>\n          <div *clrIfError=\"'required'\">\n            Email is required.\n          </div>\n          <div *clrIfError=\"'email'\">\n            Incorrect Email.\n          </div></clr-control-error\n        >\n      </clr-input-container>\n      <clr-password-container>\n        <input\n          type=\"password\"\n          name=\"password\"\n          formControlName=\"password\"\n          clrPassword\n          placeholder=\"Password\"\n        />\n        <clr-control-error>\n          <div *clrIfError=\"'required'\">\n            Password is required.\n          </div>\n          <div *clrIfError=\"'minlength'\">\n            Password must be at least 8 characters long.\n          </div></clr-control-error\n        >\n      </clr-password-container>\n      <div *ngIf=\"invalidCredentials\" class=\"error active\">\n        Invalid user name or password\n      </div>\n      <button\n        type=\"submit\"\n        class=\"btn btn-primary\"\n        [disabled]=\"loginForm.invalid\"\n      >\n        Login\n      </button>\n    </div>\n    <div>\n      <div>Vous n'avez pas de compte ?</div>\n      <a routerLink=\"/account/register\" class=\"btn\">\n        Sign up\n      </a>\n    </div>\n  </form>\n</div>\n"
+module.exports = "<div class=\"login-wrapper\">\r\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin()\" class=\"login\">\r\n    <section class=\"title\">\r\n      <h3 class=\"welcome\">Login page</h3>\r\n    </section>\r\n    <div class=\"login-group\">\r\n      <clr-input-container>\r\n        <input\r\n          type=\"text\"\r\n          name=\"email\"\r\n          formControlName=\"email\"\r\n          clrInput\r\n          placeholder=\"Email\"\r\n        />\r\n        <clr-control-error>\r\n          <div *clrIfError=\"'required'\">\r\n            Email is required.\r\n          </div>\r\n          <div *clrIfError=\"'email'\">\r\n            Incorrect Email.\r\n          </div></clr-control-error\r\n        >\r\n      </clr-input-container>\r\n      <clr-password-container>\r\n        <input\r\n          type=\"password\"\r\n          name=\"password\"\r\n          formControlName=\"password\"\r\n          clrPassword\r\n          placeholder=\"Password\"\r\n        />\r\n        <clr-control-error>\r\n          <div *clrIfError=\"'required'\">\r\n            Password is required.\r\n          </div>\r\n          <div *clrIfError=\"'minlength'\">\r\n            Password must be at least 8 characters long.\r\n          </div></clr-control-error\r\n        >\r\n      </clr-password-container>\r\n      <div *ngIf=\"invalidCredentials\" class=\"error active\">\r\n        Invalid user name or password\r\n      </div>\r\n      <button\r\n        type=\"submit\"\r\n        class=\"btn btn-primary\"\r\n        [disabled]=\"loginForm.invalid\"\r\n      >\r\n        Login\r\n      </button>\r\n    </div>\r\n    <div>\r\n      <div>Vous n'avez pas de compte ?</div>\r\n      <a routerLink=\"/account/register\" class=\"btn\">\r\n        Sign up\r\n      </a>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -766,7 +766,7 @@ module.exports = "<div class=\"login-wrapper\">\n  <form [formGroup]=\"loginForm
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "a {\n  display: block; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vY29udGFpbmVycy9sb2dpbi9DOlxcZGV2XFxnaXZlbWVcXGNsaWVudC9zcmNcXGFwcFxcbG9naW5cXGNvbnRhaW5lcnNcXGxvZ2luXFxsb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGNBQWMsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2NvbnRhaW5lcnMvbG9naW4vbG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJhIHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG4iXX0= */"
+module.exports = "a {\n  display: block; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vY29udGFpbmVycy9sb2dpbi9EOlxcRGV2ZWxvcHBlbWVudFxcZ2l2ZW1lXFxjbGllbnQvc3JjXFxhcHBcXGxvZ2luXFxjb250YWluZXJzXFxsb2dpblxcbG9naW4uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFjLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9sb2dpbi9jb250YWluZXJzL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYSB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -1081,7 +1081,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  footer works!\n</p>\n"
+module.exports = "<p>\r\n  footer works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1144,7 +1144,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"header-3\">\n  <div class=\"branding\">\n    <a class=\"nav-link\">\n      <clr-icon shape=\"shield\"></clr-icon>\n      <span class=\"title\">{{ title }}</span>\n    </a>\n  </div>\n  <div class=\"header-nav\">\n    <a routerLink=\"/\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\n      ><clr-icon shape=\"home\"></clr-icon\n    ></a>\n  </div>\n  <div *ngIf=\"isSignedIn\" class=\"header-actions\">\n    <clr-dropdown class=\"dropdown bottom-right\">\n      <button class=\"nav-icon\" clrDropdownToggle>\n        <clr-icon shape=\"user\"></clr-icon>\n        <clr-icon shape=\"caret down\"></clr-icon>\n      </button>\n      <div class=\"dropdown-menu\">\n        <a\n          [routerLink]=\"['account/profile']\"\n          routerLinkActive=\"active\"\n          clrDropdownItem\n          >Profile</a\n        >\n        <a (click)=\"onLogout()\" clrDropdownItem>Logout</a>\n      </div>\n    </clr-dropdown>\n  </div>\n  <div *ngIf=\"!isSignedIn\" class=\"header-actions\">\n    <a routerLink=\"login\" routerLinkActive=\"active\" class=\"nav-link nav-text\"\n      ><span>Log in</span></a\n    >\n    <a\n      routerLink=\"account/register\"\n      routerLinkActive=\"active\"\n      class=\"nav-link nav-text\"\n      ><span>Sign up</span></a\n    >\n  </div>\n</header>\n"
+module.exports = "<header class=\"header-3\">\r\n  <div class=\"branding\">\r\n    <a class=\"nav-link\">\r\n      <clr-icon shape=\"shield\"></clr-icon>\r\n      <span class=\"title\">{{ title }}</span>\r\n    </a>\r\n  </div>\r\n  <div class=\"header-nav\">\r\n    <a routerLink=\"/\" routerLinkActive=\"active\" class=\"nav-link nav-icon\"\r\n      ><clr-icon shape=\"home\"></clr-icon\r\n    ></a>\r\n  </div>\r\n  <div *ngIf=\"isSignedIn\" class=\"header-actions\">\r\n    <clr-dropdown class=\"dropdown bottom-right\">\r\n      <button class=\"nav-icon\" clrDropdownToggle>\r\n        <clr-icon shape=\"user\"></clr-icon>\r\n        <clr-icon shape=\"caret down\"></clr-icon>\r\n      </button>\r\n      <div class=\"dropdown-menu\">\r\n        <a\r\n          [routerLink]=\"['account/profile']\"\r\n          routerLinkActive=\"active\"\r\n          clrDropdownItem\r\n          >Profile</a\r\n        >\r\n        <a (click)=\"onLogout()\" clrDropdownItem>Logout</a>\r\n      </div>\r\n    </clr-dropdown>\r\n  </div>\r\n  <div *ngIf=\"!isSignedIn\" class=\"header-actions\">\r\n    <a routerLink=\"login\" routerLinkActive=\"active\" class=\"nav-link nav-text\"\r\n      ><span>Log in</span></a\r\n    >\r\n    <a\r\n      routerLink=\"account/register\"\r\n      routerLinkActive=\"active\"\r\n      class=\"nav-link nav-text\"\r\n      ><span>Sign up</span></a\r\n    >\r\n  </div>\r\n</header>\r\n"
 
 /***/ }),
 
@@ -1219,7 +1219,7 @@ var HeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidenav\">\n  <section class=\"sidenav-content\">\n    <a\n      [routerLink]=\"['/annonces', 'offres']\"\n      routerLinkActive=\"active\"\n      class=\"nav-link\"\n      >Offres</a\n    >\n    <a\n      [routerLink]=\"['/annonces', 'add-annonce']\"\n      routerLinkActive=\"active\"\n      class=\"nav-link\"\n      >Déposer une annonce</a\n    >\n  </section>\n</nav>\n"
+module.exports = "<nav class=\"sidenav\">\r\n  <section class=\"sidenav-content\">\r\n    <a\r\n      [routerLink]=\"['annonces', 'offres']\"\r\n      routerLinkActive=\"active\"\r\n      class=\"nav-link\"\r\n      >Offres</a\r\n    >\r\n    <a\r\n      [routerLink]=\"['annonces', 'add-annonce']\"\r\n      routerLinkActive=\"active\"\r\n      class=\"nav-link\"\r\n      >Déposer une annonce</a\r\n    >\r\n  </section>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -1280,7 +1280,7 @@ var NavComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container\">\n  <app-header\n    [isSignedIn]=\"isSignedIn$ | async\"\n    (logout)=\"onLogout()\"\n  ></app-header>\n  <div class=\"content-container\">\n    <div class=\"content-area\">\n      <router-outlet></router-outlet>\n      <app-footer></app-footer>\n    </div>\n    <app-nav class=\"sidenav\"></app-nav>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-container\">\r\n  <app-header\r\n    [isSignedIn]=\"isSignedIn$ | async\"\r\n    (logout)=\"onLogout()\"\r\n  ></app-header>\r\n  <div class=\"content-container\">\r\n    <div class=\"content-area\">\r\n      <router-outlet></router-outlet>\r\n      <app-footer></app-footer>\r\n    </div>\r\n    <app-nav class=\"sidenav\"></app-nav>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1474,7 +1474,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\dev\giveme\client\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Developpement\giveme\client\src\main.ts */"./src/main.ts");
 
 
 /***/ })
